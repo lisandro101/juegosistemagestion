@@ -13,8 +13,11 @@ package juegosistemagestion.igu;
 
 import java.awt.Component;
 import java.awt.Container;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import juegosistemagestion.entidades.Mochila;
+import juegosistemagestion.entidades.Objeto;
 import juegosistemagestion.logica.GestorMochila;
 import juegosistemagestion.logica.MochilaTableModel;
 
@@ -25,6 +28,7 @@ import juegosistemagestion.logica.MochilaTableModel;
 public class PantallaPrincipal extends javax.swing.JDialog {
 
     private MochilaTableModel tModel;
+    private List<Objeto> objetos;
 
     public PantallaPrincipal() {
         initComponents();
@@ -45,7 +49,7 @@ public class PantallaPrincipal extends javax.swing.JDialog {
         lbCapacidad = new javax.swing.JLabel();
         tfCapacidad = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        tfCantObjetos = new javax.swing.JTextField();
         lbBeneficio = new javax.swing.JLabel();
         tfBeneficioInferior = new javax.swing.JTextField();
         tfBeneficioSuperior = new javax.swing.JTextField();
@@ -84,7 +88,7 @@ public class PantallaPrincipal extends javax.swing.JDialog {
 
         jLabel1.setText("Cantidad de Objetos:");
 
-        jTextField1.setText("50");
+        tfCantObjetos.setText("50");
 
         lbBeneficio.setText("Beneficio Objetos:");
 
@@ -117,7 +121,7 @@ public class PantallaPrincipal extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(tfCapacidad)
-                            .addComponent(jTextField1)
+                            .addComponent(tfCantObjetos)
                             .addComponent(tfVolumenInferior, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
                             .addComponent(tfBeneficioInferior, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -142,7 +146,7 @@ public class PantallaPrincipal extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfCantObjetos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbBeneficio)
@@ -246,7 +250,6 @@ public class PantallaPrincipal extends javax.swing.JDialog {
         jXPanel3.setLayout(jXPanel3Layout);
         jXPanel3Layout.setHorizontalGroup(
             jXPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
             .addGroup(jXPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jXPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -260,7 +263,6 @@ public class PantallaPrincipal extends javax.swing.JDialog {
         );
         jXPanel3Layout.setVerticalGroup(
             jXPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 74, Short.MAX_VALUE)
             .addGroup(jXPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jXPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -347,15 +349,40 @@ public class PantallaPrincipal extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCalcularActionPerformed
+        double beneMin;
+        double beneMax;
+        double volMin;
+        double volMax;
+        int cantObj;
+        double capacidadMochila;
+        Mochila mochila;
+
         if (!isCamposNumericosValidos(this)) {
             JOptionPane.showMessageDialog(this, "Existen campos sin completar o invalidos");
         } else {
             if (!isIntervalosValidos()) {
                 JOptionPane.showMessageDialog(this, "Intervalos incorrectos");
             } else {
+                
+                beneMin = Double.parseDouble(tfBeneficioInferior.getText());
+                beneMax = Double.parseDouble(tfBeneficioSuperior.getText());
+                volMin = Double.parseDouble(tfVolumenInferior.getText());
+                volMax = Double.parseDouble(tfVolumenSuperior.getText());
+                cantObj = Integer.parseInt(tfCantObjetos.getText());
+                capacidadMochila = Double.parseDouble(tfCapacidad.getText());
+
                 //aca hace el calculo (llamando a un metodo del paquete logica) y luego carga la tabla
 
-                GestorMochila.getInstancia().prueba(Double.parseDouble(tfBeneficioInferior.getText()), Double.parseDouble(tfBeneficioSuperior.getText()));
+                limpiarTabla();
+                objetos = GestorMochila.getInstancia().generarObjetos(beneMin, beneMax, volMin, volMax, cantObj);
+                mochila = new Mochila();
+                mochila.setObjetos(objetos);
+                mochila.setCapacidad(capacidadMochila);
+                GestorMochila.getInstancia().inicializarMochila(mochila);
+
+                cargarTabla();
+                
+
             }
         }
 }//GEN-LAST:event_btCalcularActionPerformed
@@ -380,7 +407,6 @@ public class PantallaPrincipal extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
     private org.jdesktop.swingx.JXPanel jXPanel1;
     private org.jdesktop.swingx.JXPanel jXPanel2;
     private org.jdesktop.swingx.JXPanel jXPanel3;
@@ -393,6 +419,7 @@ public class PantallaPrincipal extends javax.swing.JDialog {
     private javax.swing.JTextField tfBeneficioObCHormigas;
     private javax.swing.JTextField tfBeneficioObFBruta;
     private javax.swing.JTextField tfBeneficioSuperior;
+    private javax.swing.JTextField tfCantObjetos;
     private javax.swing.JTextField tfCapacidad;
     private javax.swing.JTextField tfVolumenInferior;
     private javax.swing.JTextField tfVolumenOcupadoCHormigas;
@@ -472,5 +499,18 @@ public class PantallaPrincipal extends javax.swing.JDialog {
         }
 
         return resul;
+    }
+
+    private void limpiarTabla(){
+        tModel.limpiarTableModel();
+        objetos=null;
+    }
+
+    private void cargarTabla() {
+        if (objetos != null) {
+            for (Objeto objeto : objetos) {
+                tModel.agregarFila(objeto);
+            }
+        }
     }
 }
