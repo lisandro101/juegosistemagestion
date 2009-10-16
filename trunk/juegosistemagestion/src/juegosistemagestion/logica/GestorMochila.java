@@ -55,60 +55,62 @@ public class GestorMochila {
     }
 
     public void calcularPorFuerzaBruta(Mochila mochila){
-        List<Objeto> objetos = inicializarSubMochila(mochila);//new ArrayList<Objeto>();
+        int cantidadObjetos= mochila.getObjetos().size();
+        Objeto objeto;
+        //Mochila A
+        List<Objeto> mejoresObjetos = inicializarSubMochila(mochila);//new ArrayList<Objeto>();
         double capacidad = mochila.getCapacidad();
-        Mochila mochilaTemp = new Mochila();
-        mochilaTemp.setCapacidad(capacidad);
-        mochilaTemp.setObjetos(objetos);
+        Mochila mejorMochila = new Mochila();
+        mejorMochila.setCapacidad(capacidad);
+        mejorMochila.setObjetos(mejoresObjetos);
 
-        double mejorBeneficio = calcularBeneficio(mochilaTemp);
+        //no hacen falta
+  //      double mejorBeneficio = calcularBeneficio(mejorMochila);
         double volumen =0.0;
 
+        //Mejor Mochila
+        List<Objeto> objetosA = new ArrayList<Objeto>();
+        capacidad = mochila.getCapacidad();
+        Mochila mochilaA = new Mochila();
+        mochilaA.setCapacidad(capacidad);
+        mochilaA.setObjetos(objetosA);
 
+        for (int i = 0; i < cantidadObjetos; i++) {
+            objeto = mochila.getObjetos().get(i);
+            objeto.setDisponible(true);
+            mochilaA.getObjetos().add(objeto);
 
+            for (int paso = 1; paso < cantidadObjetos; paso=+(cantidadObjetos/3)) {
+
+                for (int j = (i+1); j < cantidadObjetos; j=+paso) {
+
+                    if( true){ //volumenOcupadoCorrecto(mochilaA)){
+                        if(true){
+
+                        }
+                    }
+
+                }
+            }
+
+        }
        
 
     }
 
-    private boolean volumenOcupadoCorrecto(Mochila mochila){
-        boolean resul;
-        double total= 0.0;
-        for (Objeto objeto : mochila.getObjetos()) {
-            if(objeto.isDisponible()){
-                total+= objeto.getVolumen();
-            }
-        }
-        if(total<= mochila.getCapacidad()){
-            resul = true;
-        }else{
-            resul= false;
-        }
-        return resul;
+    
+
+    private double redondear(double valor){
+        return (Math.floor(valor*100)/100);
     }
 
-    private double calcularBeneficio(Mochila mochila){
-        double total= 0.0;
-        for (Objeto objeto : mochila.getObjetos()) {
-            if(objeto.isDisponible()){
-                total+= objeto.getBeneficio();
-            }
-        }
-        return total;
-    }
-
-    private double calcularVolumen(Mochila mochila){
-        double total= 0.0;
-        for (Objeto objeto : mochila.getObjetos()) {
-            if(objeto.isDisponible()){
-                total+= objeto.getVolumen();
-            }
-        }
-        return total;
-    }
-
-    //tiene q ser private
+   /**
+     * Debuelve la mochila completa, pero con los primeros objetos como disponibles (hasta q cubran la capacidad)
+     * @param mochila
+     * @return
+     */
     public Mochila inicializarMochila(Mochila mochila){
-        double ocupado = calcularVolumen(mochila);
+        double ocupado = mochila.getVolumenOcupado(); //calcularVolumen(mochila);
         for (Objeto objeto : mochila.getObjetos()) {
             if((ocupado)+ objeto.getVolumen() <= mochila.getCapacidad()){
                 objeto.setDisponible(true);
@@ -119,14 +121,14 @@ public class GestorMochila {
         return mochila;
     }
     /**
-     * Devuelve una nueva List de Objetos cuyo volumen no supero la capacidad de la mochila
+     * Devuelve una nueva List de Objetos disponibles (disponible=true)cuyo volumen no supero la capacidad de la mochila
      * @param mochila
      * @return
      */
 
-    private List<Objeto> inicializarSubMochila(Mochila mochila){
+    public List<Objeto> inicializarSubMochila(Mochila mochila){
         List<Objeto> objetos = new ArrayList<Objeto>();
-        double ocupado = calcularVolumen(mochila);
+        double ocupado = mochila.getVolumenOcupado();//calcularVolumen(mochila);
         for (Objeto objeto : mochila.getObjetos()) {
             if((ocupado)+ objeto.getVolumen() <= mochila.getCapacidad()){
                 objeto.setDisponible(true);
@@ -136,29 +138,6 @@ public class GestorMochila {
         }
 
         return objetos;
-    }
-
-    private double redondear(double valor){
-        return (Math.floor(valor*100)/100);
-    }
-
-    private Mochila clonarMochila(Mochila original){
-        Mochila mochilaNueva = new Mochila();
-        List<Objeto> objetosNuevos = new ArrayList<Objeto>();
-        Objeto objetoNuevo;
-
-        mochilaNueva.setCapacidad(original.getCapacidad());
-
-        for (Objeto objeto : original.getObjetos()) {
-            objetoNuevo = new Objeto();
-            objetoNuevo.setBeneficio(objeto.getBeneficio());
-            objetoNuevo.setDisponible(objeto.isDisponible());
-            objetoNuevo.setVolumen(objeto.getVolumen());
-            objetoNuevo.setNombre(objeto.getNombre());
-            objetosNuevos.add(objetoNuevo);
-        }
-        mochilaNueva.setObjetos(objetosNuevos);
-        return mochilaNueva;
     }
 }
 
