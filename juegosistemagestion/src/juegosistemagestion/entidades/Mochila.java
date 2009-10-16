@@ -48,18 +48,18 @@ public class Mochila {
     //metodos con lógica --------------------------------------------------------
 
     /**
-     * Devuelve una nueva instacia Mochila identica a la enviada por parametro
+     * Devuelve una nueva instacia Mochila identica
      * @param original
      * @return
      */
-    public Mochila clonarMochila(Mochila original){
+    public Mochila clonarMochila(){
         Mochila mochilaNueva = new Mochila();
         List<Objeto> objetosNuevos = new ArrayList<Objeto>();
         Objeto objetoNuevo;
 
-        mochilaNueva.setCapacidad(original.getCapacidad());
+        mochilaNueva.setCapacidad(this.getCapacidad());
 
-        for (Objeto objeto : original.getObjetos()) {
+        for (Objeto objeto : this.getObjetos()) {
             objetoNuevo = new Objeto();
             objetoNuevo.setBeneficio(objeto.getBeneficio());
             objetoNuevo.setDisponible(objeto.isDisponible());
@@ -71,7 +71,7 @@ public class Mochila {
         return mochilaNueva;
     }
 
-    public boolean volumenOcupadoCorrecto(){
+    public boolean isVolumenOcupadoCorrecto(){
         boolean resul;
         double total= 0.0;
         for (Objeto objeto : this.getObjetos()) {
@@ -107,4 +107,43 @@ public class Mochila {
         return total;
     }
 
+    public void vaciarMochila(){
+        for (int i = 0; i < this.getObjetos().size(); i++) {
+            this.getObjetos().remove(i);
+        }
+    }
+
+    public void noDisponibleTodosLosObjetos(){
+        for (Objeto objeto : objetos) {
+            objeto.setDisponible(false);
+        }
+    }
+
+    public void mostrarObjetosMochilaDisponibles(){
+
+        System.out.println("----------------------------------------");
+        System.out.println("-----------Objetos Disponibles----------");
+        System.out.println("----------------------------------------");
+        for (Objeto objeto : objetos) {
+            if(objeto.isDisponible()){
+                System.out.println("----------------------------------------");
+                System.out.println("Nombre: "+objeto.getNombre());
+                System.out.println("Beneficio: "+objeto.getBeneficio());
+                System.out.println("Volumen: "+ objeto.getVolumen());
+            }
+        }
+        System.out.println("\n----------------------------------------");
+        System.out.println("----------------------------------------");
+        System.out.println("Beneficio Total: "+ this.getBeneficioObtenido());
+        System.out.println("Volumen: "+ this.getVolumenOcupado());
+        System.out.println("----------------------------------------");
+    }
+
+    public boolean estaEnLaMochila(Objeto objeto){
+        if(objetos.contains(objeto)){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

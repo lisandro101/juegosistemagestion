@@ -309,9 +309,19 @@ public class PantallaPrincipal extends javax.swing.JDialog {
         jxPArchivos.add(btCalcular);
 
         btCargar.setText("Cargar");
+        btCargar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCargarActionPerformed(evt);
+            }
+        });
         jxPArchivos.add(btCargar);
 
         btGuardar.setText("Guardar");
+        btGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btGuardarActionPerformed(evt);
+            }
+        });
         jxPArchivos.add(btGuardar);
 
         btSalir.setText("   Salir  ");
@@ -378,7 +388,10 @@ public class PantallaPrincipal extends javax.swing.JDialog {
                 mochila = new Mochila();
                 mochila.setObjetos(objetos);
                 mochila.setCapacidad(capacidadMochila);
-                GestorMochila.getInstancia().inicializarMochila(mochila);
+
+
+                //GestorMochila.getInstancia().inicializarMochila(mochila);
+                GestorMochila.getInstancia().calcularPorFuerzaBruta(mochila);
 
                 cargarTabla();
                 
@@ -390,6 +403,14 @@ public class PantallaPrincipal extends javax.swing.JDialog {
     private void btSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalirActionPerformed
         salir();
     }//GEN-LAST:event_btSalirActionPerformed
+
+    private void btCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCargarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btCargarActionPerformed
+
+    private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btGuardarActionPerformed
 
  
 
