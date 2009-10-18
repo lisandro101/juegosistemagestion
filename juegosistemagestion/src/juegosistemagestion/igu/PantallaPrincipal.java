@@ -29,7 +29,6 @@ import juegosistemagestion.persistencia.GestorPersistencia;
 public class PantallaPrincipal extends javax.swing.JDialog {
 
     private MochilaTableModel tModel;
-    private List<Objeto> objetos;
     private List<Colonia> colonias;
 
     public PantallaPrincipal() {
@@ -47,7 +46,7 @@ public class PantallaPrincipal extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jpParametros = new javax.swing.JPanel();
         lbCapacidad = new javax.swing.JLabel();
         tfCapacidad = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -60,7 +59,7 @@ public class PantallaPrincipal extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         tfVolumenInferior = new javax.swing.JTextField();
         lbVolumen = new javax.swing.JLabel();
-        jXPanel1 = new org.jdesktop.swingx.JXPanel();
+        jpResultados = new org.jdesktop.swingx.JXPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jXTResultado = new org.jdesktop.swingx.JXTable();
         jXPanel2 = new org.jdesktop.swingx.JXPanel();
@@ -75,6 +74,7 @@ public class PantallaPrincipal extends javax.swing.JDialog {
         tfBeneficioObCHormigas = new javax.swing.JTextField();
         jxPArchivos = new org.jdesktop.swingx.JXPanel();
         btCalcular = new javax.swing.JButton();
+        btGenerar = new javax.swing.JButton();
         btCargar = new javax.swing.JButton();
         btGuardar = new javax.swing.JButton();
         btSalir = new javax.swing.JButton();
@@ -82,7 +82,7 @@ public class PantallaPrincipal extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Juego");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Parametros"));
+        jpParametros.setBorder(javax.swing.BorderFactory.createTitledBorder("Parametros"));
 
         lbCapacidad.setText("Capacidad de la Mochila:");
 
@@ -108,55 +108,55 @@ public class PantallaPrincipal extends javax.swing.JDialog {
 
         lbVolumen.setText("Volumen Objetos:");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jpParametrosLayout = new javax.swing.GroupLayout(jpParametros);
+        jpParametros.setLayout(jpParametrosLayout);
+        jpParametrosLayout.setHorizontalGroup(
+            jpParametrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpParametrosLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpParametrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpParametrosLayout.createSequentialGroup()
+                        .addGroup(jpParametrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbCapacidad)
                             .addComponent(jLabel1)
                             .addComponent(lbBeneficio))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jpParametrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(tfCapacidad)
                             .addComponent(tfCantObjetos)
                             .addComponent(tfVolumenInferior, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
                             .addComponent(tfBeneficioInferior, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jpParametrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jpParametrosLayout.createSequentialGroup()
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(tfVolumenSuperior))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jpParametrosLayout.createSequentialGroup()
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(tfBeneficioSuperior, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(lbVolumen))
-                .addContainerGap(244, Short.MAX_VALUE))
+                .addContainerGap(326, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        jpParametrosLayout.setVerticalGroup(
+            jpParametrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpParametrosLayout.createSequentialGroup()
+                .addGroup(jpParametrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbCapacidad)
                     .addComponent(tfCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jpParametrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(tfCantObjetos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jpParametrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbBeneficio)
                     .addComponent(tfBeneficioSuperior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(tfBeneficioInferior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jpParametrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbVolumen)
                     .addComponent(jLabel4)
                     .addComponent(tfVolumenInferior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -164,7 +164,7 @@ public class PantallaPrincipal extends javax.swing.JDialog {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        jXPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Resultado"));
+        jpResultados.setBorder(javax.swing.BorderFactory.createTitledBorder("Resultado"));
 
         jXTResultado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -218,9 +218,9 @@ public class PantallaPrincipal extends javax.swing.JDialog {
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jXPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfVolumenOcupadoFBruta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
-                    .addComponent(tfBeneficioObFBruta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE))
-                .addContainerGap(35, Short.MAX_VALUE))
+                    .addComponent(tfVolumenOcupadoFBruta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+                    .addComponent(tfBeneficioObFBruta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
         jXPanel2Layout.setVerticalGroup(
             jXPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -259,9 +259,9 @@ public class PantallaPrincipal extends javax.swing.JDialog {
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jXPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfVolumenOcupadoCHormigas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
-                    .addComponent(tfBeneficioObCHormigas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE))
-                .addContainerGap(40, Short.MAX_VALUE))
+                    .addComponent(tfVolumenOcupadoCHormigas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                    .addComponent(tfBeneficioObCHormigas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
         jXPanel3Layout.setVerticalGroup(
             jXPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -277,27 +277,27 @@ public class PantallaPrincipal extends javax.swing.JDialog {
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jXPanel1Layout = new javax.swing.GroupLayout(jXPanel1);
-        jXPanel1.setLayout(jXPanel1Layout);
-        jXPanel1Layout.setHorizontalGroup(
-            jXPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jXPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jpResultadosLayout = new javax.swing.GroupLayout(jpResultados);
+        jpResultados.setLayout(jpResultadosLayout);
+        jpResultadosLayout.setHorizontalGroup(
+            jpResultadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpResultadosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jXPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jXPanel1Layout.createSequentialGroup()
+                .addGroup(jpResultadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpResultadosLayout.createSequentialGroup()
                         .addComponent(jXPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jXPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 539, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 543, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        jXPanel1Layout.setVerticalGroup(
-            jXPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jXPanel1Layout.createSequentialGroup()
+        jpResultadosLayout.setVerticalGroup(
+            jpResultadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpResultadosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jXPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpResultadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jXPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jXPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
@@ -309,6 +309,14 @@ public class PantallaPrincipal extends javax.swing.JDialog {
             }
         });
         jxPArchivos.add(btCalcular);
+
+        btGenerar.setText("Generar");
+        btGenerar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btGenerarActionPerformed(evt);
+            }
+        });
+        jxPArchivos.add(btGenerar);
 
         btCargar.setText("Cargar");
         btCargar.addActionListener(new java.awt.event.ActionListener() {
@@ -341,19 +349,19 @@ public class PantallaPrincipal extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jXPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jxPArchivos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jpResultados, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jxPArchivos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
+                    .addComponent(jpParametros, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jpParametros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jXPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addComponent(jpResultados, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jxPArchivos, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -361,49 +369,34 @@ public class PantallaPrincipal extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCalcularActionPerformed
-        double beneMin;
-        double beneMax;
-        double volMin;
-        double volMax;
-        int cantObj;
+
         double capacidadMochila;
         Mochila mochila;
 
-        if (!isCamposNumericosValidos(this)) {
-            JOptionPane.showMessageDialog(this, "Existen campos sin completar o invalidos");
+//        if (!isCamposNumericosValidos(this)) {
+//            JOptionPane.showMessageDialog(this,
+//                    "Existen campos sin completar o invalidos");
+//        } else {
+        if (!isIntervalosValidos()) {
+            JOptionPane.showMessageDialog(this, "Intervalos incorrectos");
         } else {
-            if (!isIntervalosValidos()) {
-                JOptionPane.showMessageDialog(this, "Intervalos incorrectos");
-            } else {
 
-                beneMin = Double.parseDouble(tfBeneficioInferior.getText());
-                beneMax = Double.parseDouble(tfBeneficioSuperior.getText());
-                volMin = Double.parseDouble(tfVolumenInferior.getText());
-                volMax = Double.parseDouble(tfVolumenSuperior.getText());
-                cantObj = Integer.parseInt(tfCantObjetos.getText());
-                capacidadMochila = Double.parseDouble(tfCapacidad.getText());
+            capacidadMochila = Double.parseDouble(tfCapacidad.getText());
 
-                //aca hace el calculo (llamando a un metodo del paquete logica) y luego carga la tabla
+            //aca hace el calculo (llamando a un metodo del paquete logica) y luego carga la tabla
 
-                limpiarTabla();
-                objetos = GestorMochila.getInstancia().generarObjetos(beneMin, beneMax, volMin, volMax, cantObj);
-                mochila = new Mochila();
-                mochila.setObjetos(objetos);
-                mochila.setCapacidad(capacidadMochila);
+            tModel.limpiarTableModel();
+            mochila = new Mochila();
+            mochila.setObjetos(tModel.getFilas());
+            mochila.setCapacidad(capacidadMochila);
 
 
-                //GestorMochila.getInstancia().inicializarMochila(mochila);
-                GestorMochila.getInstancia().calcularPorFuerzaBruta(mochila);
+            //GestorMochila.getInstancia().inicializarMochila(mochila);
+            GestorMochila.getInstancia().calcularPorFuerzaBruta(mochila);
+            GestorMochila.getInstancia().calcularPorHormiga(mochila);
 
-
-                //Completar !!!!!!!!!!!
-                
-                GestorMochila.getInstancia().calcularPorHormiga(mochila);
-                cargarTabla();
-
-
-            }
         }
+//        }
 }//GEN-LAST:event_btCalcularActionPerformed
 
     private void btSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalirActionPerformed
@@ -416,18 +409,50 @@ public class PantallaPrincipal extends javax.swing.JDialog {
         tfCapacidad.setText("" + mochila.getCapacidad());
 //        mtb.limpiarTableModel();
         mtb.agregarFilas(mochila.getObjetos());
-        tfCantObjetos.setText(new Integer(mochila.getObjetos().size()).toString());
+        tfCantObjetos.setText(
+                new Integer(mochila.getObjetos().size()).toString());
 
     }//GEN-LAST:event_btCargarActionPerformed
 
     private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardarActionPerformed
         MochilaTableModel mtb = (MochilaTableModel) jXTResultado.getModel();
         Double capacidad = new Double(tfCapacidad.getText());
-        GestorPersistencia.getInstancia().guardarMochila(capacidad, mtb.getFilas());
+        GestorPersistencia.getInstancia().guardarMochila(capacidad,
+                mtb.getFilas());
     }//GEN-LAST:event_btGuardarActionPerformed
+
+    private void btGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGenerarActionPerformed
+        double beneMin;
+        double beneMax;
+        double volMin;
+        double volMax;
+        int cantObj;
+
+//        if (!isCamposNumericosValidos(this)) {
+//            JOptionPane.showMessageDialog(this,
+//                    "Existen campos sin completar o invalidos");
+//        } else {
+        if (!isIntervalosValidos()) {
+            JOptionPane.showMessageDialog(this, "Intervalos incorrectos");
+        } else {
+
+            beneMin = Double.parseDouble(tfBeneficioInferior.getText());
+            beneMax = Double.parseDouble(tfBeneficioSuperior.getText());
+            volMin = Double.parseDouble(tfVolumenInferior.getText());
+            volMax = Double.parseDouble(tfVolumenSuperior.getText());
+            cantObj = Integer.parseInt(tfCantObjetos.getText());
+
+            tModel.agregarFilas(GestorMochila.getInstancia().generarObjetos(
+                    beneMin,
+                    beneMax, volMin, volMax, cantObj));
+
+        }
+//        }
+    }//GEN-LAST:event_btGenerarActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCalcular;
     private javax.swing.JButton btCargar;
+    private javax.swing.JButton btGenerar;
     private javax.swing.JButton btGuardar;
     private javax.swing.JButton btSalir;
     private javax.swing.JLabel jLabel1;
@@ -437,12 +462,12 @@ public class PantallaPrincipal extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private org.jdesktop.swingx.JXPanel jXPanel1;
     private org.jdesktop.swingx.JXPanel jXPanel2;
     private org.jdesktop.swingx.JXPanel jXPanel3;
     private org.jdesktop.swingx.JXTable jXTResultado;
+    private javax.swing.JPanel jpParametros;
+    private org.jdesktop.swingx.JXPanel jpResultados;
     private org.jdesktop.swingx.JXPanel jxPArchivos;
     private javax.swing.JLabel lbBeneficio;
     private javax.swing.JLabel lbCapacidad;
@@ -477,11 +502,11 @@ public class PantallaPrincipal extends javax.swing.JDialog {
                 if ((((JTextField) componente).getText().trim().length() == 0) ||
                         (!esNumeroPositivo(((JTextField) componente).getText()))) {
 
-                    ++resultado;
+                    resultado++;
                 }
             } else if (componente instanceof Container) {
                 if (!isCamposNumericosValidos((Container) componente)) {
-                    ++resultado;
+                    resultado++;
 
                 }
             }
@@ -532,17 +557,5 @@ public class PantallaPrincipal extends javax.swing.JDialog {
 
         return resul;
     }
-
-    private void limpiarTabla() {
-        tModel.limpiarTableModel();
-        objetos = null;
-    }
-
-    private void cargarTabla() {
-        if (objetos != null) {
-            for (Objeto objeto : objetos) {
-                tModel.agregarFila(objeto);
-            }
-        }
-    }
+    
 }
