@@ -118,20 +118,21 @@ public class MochilaTableModel extends AbstractTableModel {
     /**
      * Agrega Proveedor al modelo
      * 
-     * @param proveedor Proveedor a agregar
+     * @param objeto
 
      */
-    public void agregarFila(Objeto proveedor) {
-        objetos.add(proveedor);
+    public void agregarFila(Objeto objeto) {
+        objetos.add(objeto);
         
         fireTableRowsInserted(objetos.size(), objetos.size());
     }
     
     
-    public void agregarFilas(List<Objeto> objetos) {
-        if(objetos != null){
-            objetos.addAll(objetos);
-            fireTableRowsInserted(objetos.size()-objetos.size(), objetos.size());
+    public void agregarFilas(List<Objeto> obj) {
+        limpiarTableModel();
+        if(obj != null){
+            objetos.addAll(obj);
+            fireTableRowsInserted(objetos.size()-obj.size(), objetos.size());
         }
     }
     

@@ -6,8 +6,10 @@ package juegosistemagestion.persistencia;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import juegosistemagestion.entidades.Mochila;
@@ -22,6 +24,8 @@ public class GestorPersistencia {
     private static GestorPersistencia instancia;
     private BufferedWriter out;
     private BufferedReader in;
+    private static String file;
+    private static String separador;
 
     private GestorPersistencia() {
     }
@@ -29,68 +33,60 @@ public class GestorPersistencia {
     public synchronized static GestorPersistencia getInstancia() {
         if (instancia == null) {
             instancia = new GestorPersistencia();
+            file = Parametros.getInstancia().getParametro("file");
+            separador = Parametros.getInstancia().getParametro("separador");
         }
         return instancia;
     }
 
     private void abrirArchivoEscritura(String nombre) {
+
         try {
-
             out = new BufferedWriter(new FileWriter(nombre));
-
-        } catch (Exception e) {
-
-            System.err.println("Error: " + e.getMessage());
-
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
         }
+
+
     }
 
     private void abrirArchivoLectura(String nombre) {
+
         try {
-
             in = new BufferedReader(new FileReader(nombre));
-
-        } catch (Exception e) {
-
-            System.err.println("Error: " + e.getMessage());
-
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex.getMessage());
         }
     }
 
     private void cerrarArchivoEscritura() {
+
         try {
-
             out.close();
-
-        } catch (Exception e) {
-
-            System.err.println("Error: " + e.getMessage());
-
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
         }
+
     }
 
     private void cerrarArchivoLectura() {
+
         try {
-
             in.close();
-
-        } catch (Exception e) {
-
-            System.err.println("Error: " + e.getMessage());
-
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
         }
+
     }
 
     private void escribirArchivo(String datos) {
+
         try {
-
             out.write(datos);
-
-        } catch (Exception e) {
-
-            System.err.println("Error: " + e.getMessage());
-
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
         }
+
     }
 
     private String leerArchivo() {
@@ -101,13 +97,12 @@ public class GestorPersistencia {
 
             salida = in.readLine();
 
-        } catch (Exception e) {
-
-            System.err.println("Error: " + e.getMessage());
-
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
         }
 
         return salida;
+
     }
 
     private boolean noEsFinArchivo() {
@@ -118,7 +113,7 @@ public class GestorPersistencia {
 
             salida = in.ready();
 
-        } catch (Exception e) {
+        } catch (IOException e) {
 
             System.err.println("Error: " + e.getMessage());
 
@@ -129,11 +124,11 @@ public class GestorPersistencia {
 
     public void guardarMochila(double capacidad, List<Objeto> objetos) {
 
-        abrirArchivoEscritura("out.txt"); //TODO: deshardcodear
+        abrirArchivoEscritura(file); //TODO: deshardcodear
         escribirArchivo("" + capacidad + "\n");
 
         for (Objeto objecto : objetos) {
-            escribirArchivo("" + objecto.getBeneficio() + "," +
+            escribirArchivo("" + objecto.getBeneficio() + separador +
                     objecto.getVolumen() + "\n");
         }
 
@@ -151,10 +146,12 @@ public class GestorPersistencia {
         String volumen;
         int cantidad = 0;
 
-        abrirArchivoLectura("out.txt"); //TODO: deshardcodear
+        abrirArchivoLectura(file);
+
         String capacidad = leerArchivo();
-        System.out.println(capacidad);
+        System.out.println("Capacidad (String): " + capacidad); //TODO: Eliminar
         mochila.setCapacidad(Double.parseDouble(capacidad));
+        System.out.println("Capacidad (Double): " +  Double.parseDouble(capacidad)); //TODO: Eliminar
 
         while (noEsFinArchivo()) {
 
@@ -162,15 +159,16 @@ public class GestorPersistencia {
 
             linea = leerArchivo();
 
-            beneficio = linea.substring(0, linea.lastIndexOf(","));
-            volumen = linea.substring(linea.lastIndexOf(",") + 1, linea.length());
-
-            System.out.println(beneficio);
-            System.out.println(volumen);
+            beneficio = linea.substring(0, linea.lastIndexOf(separador));
+            System.out.println("Beneficio (String): " +  + Double.parseDouble(beneficio)); //TODO: Eliminar
+            System.out.println("Beneficio (Double): " +  Double.parseDouble(beneficio)); //TODO: Eliminar
+            volumen = linea.substring(linea.lastIndexOf(separador) + 1, linea.length());
+            System.out.println("Volumen (String): " +  + Double.parseDouble(volumen)); //TODO: Eliminar
+            System.out.println("Volumen (Double): " +  Double.parseDouble(volumen)); //TODO: Eliminar
 
             objeto.setBeneficio(Double.parseDouble(beneficio));
             objeto.setVolumen(Double.parseDouble(volumen));
-            objeto.setNombre(""+cantidad);
+            objeto.setNombre("" + cantidad);
             objeto.setDisponible(false);
 
             objetos.add(objeto);
@@ -181,5 +179,6 @@ public class GestorPersistencia {
         cerrarArchivoLectura();
 
         return mochila;
+
     }
 }
