@@ -27,7 +27,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="jXPanel1" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jxPArchivos" alignment="0" pref="573" max="32767" attributes="0"/>
+                  <Component id="jxPArchivos" alignment="0" pref="575" max="32767" attributes="0"/>
                   <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -41,7 +41,7 @@
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jXPanel1" min="-2" pref="244" max="-2" attributes="0"/>
-              <EmptySpace pref="7" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Component id="jxPArchivos" min="-2" pref="33" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -92,7 +92,7 @@
                       </Group>
                       <Component id="lbVolumen" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="244" max="32767" attributes="0"/>
+                  <EmptySpace pref="268" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -272,10 +272,10 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="tfVolumenOcupadoFBruta" alignment="1" pref="58" max="32767" attributes="1"/>
-                          <Component id="tfBeneficioObFBruta" alignment="1" pref="58" max="32767" attributes="1"/>
+                          <Component id="tfVolumenOcupadoFBruta" alignment="1" pref="65" max="32767" attributes="1"/>
+                          <Component id="tfBeneficioObFBruta" alignment="1" pref="65" max="32767" attributes="1"/>
                       </Group>
-                      <EmptySpace pref="35" max="32767" attributes="0"/>
+                      <EmptySpace pref="42" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -342,10 +342,10 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="tfVolumenOcupadoCHormigas" alignment="1" pref="52" max="32767" attributes="1"/>
-                          <Component id="tfBeneficioObCHormigas" alignment="1" pref="52" max="32767" attributes="1"/>
+                          <Component id="tfVolumenOcupadoCHormigas" alignment="1" pref="59" max="32767" attributes="1"/>
+                          <Component id="tfBeneficioObCHormigas" alignment="1" pref="59" max="32767" attributes="1"/>
                       </Group>
-                      <EmptySpace pref="40" max="32767" attributes="0"/>
+                      <EmptySpace pref="47" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
