@@ -8,7 +8,6 @@
  *
  * Created on 13/10/2009, 23:31:46
  */
-
 package juegosistemagestion.igu;
 
 import java.awt.Component;
@@ -20,6 +19,7 @@ import juegosistemagestion.entidades.Mochila;
 import juegosistemagestion.entidades.Objeto;
 import juegosistemagestion.logica.GestorMochila;
 import juegosistemagestion.logica.MochilaTableModel;
+import juegosistemagestion.persistencia.GestorPersistencia;
 
 /**
  *
@@ -35,12 +35,12 @@ public class PantallaPrincipal extends javax.swing.JDialog {
         inicializar();
     }
 
-
-    private void inicializar(){
+    private void inicializar() {
         tModel = new MochilaTableModel(0);
         jXTResultado.setModel(tModel);
 
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -135,7 +135,7 @@ public class PantallaPrincipal extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(tfBeneficioSuperior, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(lbVolumen))
-                .addContainerGap(222, Short.MAX_VALUE))
+                .addContainerGap(244, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,7 +159,7 @@ public class PantallaPrincipal extends javax.swing.JDialog {
                     .addComponent(jLabel4)
                     .addComponent(tfVolumenInferior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfVolumenSuperior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         jXPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Resultado"));
@@ -231,7 +231,7 @@ public class PantallaPrincipal extends javax.swing.JDialog {
                 .addGroup(jXPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(tfBeneficioObFBruta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         jXPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Colonia de Homigas"));
@@ -272,7 +272,7 @@ public class PantallaPrincipal extends javax.swing.JDialog {
                 .addGroup(jXPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(tfBeneficioObCHormigas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jXPanel1Layout = new javax.swing.GroupLayout(jXPanel1);
@@ -286,7 +286,7 @@ public class PantallaPrincipal extends javax.swing.JDialog {
                         .addComponent(jXPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jXPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 539, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jXPanel1Layout.setVerticalGroup(
@@ -340,7 +340,7 @@ public class PantallaPrincipal extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jXPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jxPArchivos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
+                    .addComponent(jxPArchivos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -350,8 +350,8 @@ public class PantallaPrincipal extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jXPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jXPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addComponent(jxPArchivos, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -373,7 +373,7 @@ public class PantallaPrincipal extends javax.swing.JDialog {
             if (!isIntervalosValidos()) {
                 JOptionPane.showMessageDialog(this, "Intervalos incorrectos");
             } else {
-                
+
                 beneMin = Double.parseDouble(tfBeneficioInferior.getText());
                 beneMax = Double.parseDouble(tfBeneficioSuperior.getText());
                 volMin = Double.parseDouble(tfVolumenInferior.getText());
@@ -394,7 +394,7 @@ public class PantallaPrincipal extends javax.swing.JDialog {
                 GestorMochila.getInstancia().calcularPorFuerzaBruta(mochila);
 
                 cargarTabla();
-                
+
 
             }
         }
@@ -405,15 +405,20 @@ public class PantallaPrincipal extends javax.swing.JDialog {
     }//GEN-LAST:event_btSalirActionPerformed
 
     private void btCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCargarActionPerformed
-        // TODO add your handling code here:
+        MochilaTableModel mtb = (MochilaTableModel) jXTResultado.getModel();
+        Mochila mochila = GestorPersistencia.getInstancia().cargarMochila();
+        tfCapacidad.setText("" + mochila.getCapacidad());
+//        mtb.limpiarTableModel();
+        mtb.agregarFilas(mochila.getObjetos());
+        tfCantObjetos.setText(new Integer(mochila.getObjetos().size()).toString());
+
     }//GEN-LAST:event_btCargarActionPerformed
 
     private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardarActionPerformed
-        // TODO add your handling code here:
+        MochilaTableModel mtb = (MochilaTableModel) jXTResultado.getModel();
+        Double capacidad = new Double(tfCapacidad.getText());
+        GestorPersistencia.getInstancia().guardarMochila(capacidad, mtb.getFilas());
     }//GEN-LAST:event_btGuardarActionPerformed
-
- 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCalcular;
     private javax.swing.JButton btCargar;
@@ -458,73 +463,73 @@ public class PantallaPrincipal extends javax.swing.JDialog {
         }
     }
 
-    private boolean isCamposNumericosValidos(Container contenedor){
-        int resultado=0;
+    private boolean isCamposNumericosValidos(Container contenedor) {
+        int resultado = 0;
 
         for (Component componente : contenedor.getComponents()) {
-                if (componente instanceof JTextField) {
-                    if( (((JTextField)componente).getText().trim().length() == 0) ||
-                            (!esNumeroPositivo(((JTextField)componente).getText()))){
-                        
-                        ++resultado;
-                    }
-                }else if (componente instanceof Container) {
-                    if(!isCamposNumericosValidos((Container)componente)){
-                        ++resultado;
+            if (componente instanceof JTextField) {
+                if ((((JTextField) componente).getText().trim().length() == 0) ||
+                        (!esNumeroPositivo(((JTextField) componente).getText()))) {
 
-                    }
+                    ++resultado;
                 }
+            } else if (componente instanceof Container) {
+                if (!isCamposNumericosValidos((Container) componente)) {
+                    ++resultado;
+
+                }
+            }
         }
-        if(resultado==0){
+        if (resultado == 0) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
-    
     private boolean esPositivo(String numero) {
         double valor = Double.parseDouble(numero);
-        if(valor<0){
+        if (valor < 0) {
             return false;
-        }else{
+        } else {
             return true;
         }
     }
 
-    private boolean esNumeroPositivo(String valor){
-        valor=valor.trim();
-        boolean resul= true;
+    private boolean esNumeroPositivo(String valor) {
+        valor = valor.trim();
+        boolean resul = true;
 
         for (int i = 0; i < valor.length(); i++) {
-            if (!Character.isDigit(valor.charAt(i)))
+            if (!Character.isDigit(valor.charAt(i))) {
                 resul = false;
+            }
         }
 
-        if(resul){
-           resul= esPositivo(valor);
+        if (resul) {
+            resul = esPositivo(valor);
         }
         return resul;
     }
 
-    private boolean isIntervalosValidos(){
-        boolean resul=true;
-        if(Double.parseDouble(tfBeneficioInferior.getText())>
-               Double.parseDouble(tfBeneficioSuperior.getText())){
-            resul= false;
+    private boolean isIntervalosValidos() {
+        boolean resul = true;
+        if (Double.parseDouble(tfBeneficioInferior.getText()) >
+                Double.parseDouble(tfBeneficioSuperior.getText())) {
+            resul = false;
         }
 
-        if(Double.parseDouble(tfVolumenInferior.getText())>
-               Double.parseDouble(tfVolumenSuperior.getText())){
-            resul= false;
+        if (Double.parseDouble(tfVolumenInferior.getText()) >
+                Double.parseDouble(tfVolumenSuperior.getText())) {
+            resul = false;
         }
 
         return resul;
     }
 
-    private void limpiarTabla(){
+    private void limpiarTabla() {
         tModel.limpiarTableModel();
-        objetos=null;
+        objetos = null;
     }
 
     private void cargarTabla() {
