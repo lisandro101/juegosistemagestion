@@ -6,6 +6,8 @@ package juegosistemagestion.logica;
 
 import java.util.ArrayList;
 import java.util.List;
+import juegosistemagestion.entidades.Colonia;
+import juegosistemagestion.entidades.Hormiga;
 import juegosistemagestion.entidades.Mochila;
 import juegosistemagestion.entidades.Objeto;
 
@@ -52,29 +54,50 @@ public class GestorMochila {
         }
         return objetos;
     }
+//--------------------------------------------------------------------------------------------------------------------------------------------------
 
     public void calcularPorHormiga(Mochila mochila) {
         int cantidadObjetos = mochila.getObjetos().size();
-        Objeto objeto;
-
-        List<Objeto> listaObjetos = inicializarSubMochila(mochila);//new ArrayList<Objeto>();
-        double capacidad = mochila.getCapacidad();
-        Mochila mejorMochila = new Mochila();
-        mejorMochila.setCapacidad(capacidad);
-        mejorMochila.setObjetos(listaObjetos);
-
-/*
-        //Mochila A
-        List<Objeto> objetosA = new ArrayList<Objeto>();
-
-        Mochila mochilaA = new Mochila();
-        mochilaA.setCapacidad(capacidad);
-        mochilaA.setObjetos(objetosA);
-*/
-
         
+        for (int i = 0; i < cantidadObjetos; i++) {
+
+
+        }
+
+    
+
+
+    }
+//===========================================================================================================================================
+public List<Hormiga> generarHormigas(int cantObj) {
+        List<Hormiga> hormigas = new ArrayList<Hormiga>();
+        Hormiga obj;
+        for (int i = 0; i < cantObj; i++) {
+            obj = new Hormiga();
+            obj.setNombre("H" + (i + 1));
+
+            hormigas.add(obj);
+        }
+        return hormigas;
     }
 
+public List<Colonia> generarColonias(int cantObj) {
+        List<Colonia> colonias = new ArrayList<Colonia>();
+       // List<Hormiga> hormigas = generarHormigas(10);
+        Colonia obj;
+        for (int i = 0; i < cantObj; i++) {
+            obj = new Colonia();
+            obj.setNombre("C" + (i + 1));
+            obj.setListaHormigas(generarHormigas(10));
+
+            colonias.add(obj);
+        }
+        return colonias;
+    }
+
+
+
+//============================================================================================================================================
     public void calcularPorFuerzaBruta(Mochila mochila) {
         int cantidadObjetos = mochila.getObjetos().size();
         Objeto objeto;
