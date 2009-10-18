@@ -14,7 +14,9 @@ public class Objeto {
     private String nombre;
     private double beneficio;
     private double volumen;
-    private boolean disponible;
+    private boolean disponible;//es parte de la soluciòn
+    double feromonaAcumulada;
+
 
     /**
      * @return the nombre

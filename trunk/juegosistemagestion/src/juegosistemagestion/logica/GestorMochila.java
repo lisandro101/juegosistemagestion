@@ -63,14 +63,16 @@ public class GestorMochila {
         mejorMochila.setCapacidad(capacidad);
         mejorMochila.setObjetos(listaObjetos);
 
-
+/*
         //Mochila A
         List<Objeto> objetosA = new ArrayList<Objeto>();
 
         Mochila mochilaA = new Mochila();
         mochilaA.setCapacidad(capacidad);
         mochilaA.setObjetos(objetosA);
+*/
 
+        
     }
 
     public void calcularPorFuerzaBruta(Mochila mochila) {
