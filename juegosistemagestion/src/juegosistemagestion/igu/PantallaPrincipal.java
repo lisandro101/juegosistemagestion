@@ -15,6 +15,7 @@ import java.awt.Container;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import juegosistemagestion.entidades.Colonia;
 import juegosistemagestion.entidades.Mochila;
 import juegosistemagestion.entidades.Objeto;
 import juegosistemagestion.logica.GestorMochila;
@@ -29,6 +30,7 @@ public class PantallaPrincipal extends javax.swing.JDialog {
 
     private MochilaTableModel tModel;
     private List<Objeto> objetos;
+    private List<Colonia> colonias;
 
     public PantallaPrincipal() {
         initComponents();
@@ -392,6 +394,10 @@ public class PantallaPrincipal extends javax.swing.JDialog {
 
                 //GestorMochila.getInstancia().inicializarMochila(mochila);
                 GestorMochila.getInstancia().calcularPorFuerzaBruta(mochila);
+
+
+                //Completar !!!!!!!!!!!
+                
                 GestorMochila.getInstancia().calcularPorHormiga(mochila);
                 cargarTabla();
 
