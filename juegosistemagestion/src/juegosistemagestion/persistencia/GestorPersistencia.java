@@ -140,7 +140,7 @@ public class GestorPersistencia {
 
         Mochila mochila = new Mochila();
         List<Objeto> objetos = new ArrayList<Objeto>();
-        Objeto objeto = new Objeto();
+        Objeto objeto;
         String linea;
         String beneficio;
         String volumen;
@@ -148,17 +148,23 @@ public class GestorPersistencia {
 
         abrirArchivoLectura(file);
 
-        String capacidad = leerArchivo();
-        mochila.setCapacidad(Double.parseDouble(capacidad));
+        if (noEsFinArchivo()) {
+            String capacidad = leerArchivo();
+            mochila.setCapacidad(Double.parseDouble(capacidad));
+        }
+
 
         while (noEsFinArchivo()) {
 
-            cantidad++;
-
             linea = leerArchivo();
 
+            cantidad++;
+
+            objeto = new Objeto();
+
             beneficio = linea.substring(0, linea.lastIndexOf(separador));
-            volumen = linea.substring(linea.lastIndexOf(separador) + 1, linea.length());
+            volumen = linea.substring(linea.lastIndexOf(separador) + 1,
+                    linea.length());
 
             objeto.setBeneficio(Double.parseDouble(beneficio));
             objeto.setVolumen(Double.parseDouble(volumen));

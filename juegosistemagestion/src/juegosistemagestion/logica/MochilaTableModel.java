@@ -129,7 +129,6 @@ public class MochilaTableModel extends AbstractTableModel {
     
     
     public void agregarFilas(List<Objeto> obj) {
-        limpiarTableModel();
         if(obj != null){
             objetos.addAll(obj);
             fireTableRowsInserted(objetos.size()-obj.size(), objetos.size());
