@@ -49,6 +49,7 @@ public class GestorMochila {
             valor.setBeneficio(generarNroAleatorio(beneMin, beneMax));
             valor.setVolumen(generarNroAleatorio(volMin, volMax));
             valor.setDisponible(false);
+            valor.setFeromonaAcumulada(0.1);
 
             objetos.add(valor);
         }
@@ -62,16 +63,20 @@ public class GestorMochila {
         System.out.println("======================================Metodo calcular Por Hormiga============================");
         System.out.println("=============================================================================================");
         List<Colonia> colonias = generarColonias(5);
+        List<Hormiga> hormigas = generarHormigas(5);
+        for (Colonia colonia : colonias) {
+            colonia.setListaHormigas(hormigas);
+        }
+
         System.out.println("Colonias");
-        //Objeto objeto;
-        //Mejor Mochila
+
 
 
         //--------------------mochila armada del paso de las hormigas------------------------
         List<Objeto> objetosCaminoHormiga = new ArrayList<Objeto>();
         Mochila mochilaCaminoHormiga = new Mochila();
 
-        
+
 
 
         for (int j = 0; j < colonias.size(); j++) {
@@ -79,55 +84,32 @@ public class GestorMochila {
 
             for (int k = 0; k < colonias.get(j).getListaHormigas().size(); k++) {
                 System.out.println("=====================================Hormiga " + k + "=============================");
-                //colonias.get(j).getListaHormigas().get(k).setNroAleatorio(generarNroAleatorio(0.0, 1.0));
-                Mochila mochilaTempClon = new Mochila();// para sacar objetos seleccionados por el número aleatorio
-                mochilaTempClon.setObjetos(mochila.getObjetos());
+
+                Mochila mochila2 = new Mochila();// para sacar objetos seleccionados por el número aleatorio
+                mochila2.setObjetos(mochila.getObjetos());
                 double capacidad = mochila.getCapacidad();
-                mochilaTempClon.setCapacidad(capacidad);
-                mochilaCaminoHormiga.setCapacidad(capacidad);
-                mochilaCaminoHormiga.setObjetos(objetosCaminoHormiga);
+                mochila2.setCapacidad(capacidad);
 
-                for (int i = 0; i < mochilaTempClon.getObjetos().size(); i++) {
+                for (int i = 0; i < mochila2.getObjetos().size(); i++) {
                     System.out.println("=====================================Objeto " + i + "=============================");
-
-                    for (Objeto obj : mochilaTempClon.getObjetos()) {
-
-                        double cantObj = mochilaTempClon.getObjetos().size();
-                        obj.setProbabilidad(1 / cantObj);
-                        double probabilidadAcum =+ 1 / mochilaTempClon.getObjetos().size();
-                        obj.setProbabilidadAcumulada(probabilidadAcum);
-
-
-                    }
-
-
                     //System.out.println("Hay " + vuelta);
-                    double numAleatorio = Math.random();
-                    //System.out.println("El número Aleatorio es " + numAleatorio);
-                    System.out.println("La probabilidad Acumulada es " + mochilaTempClon.getObjetos().get(i).getProbabilidadAcumulada());
+                    //System.out.println("La probabilidad Acumulada es " + mochila2.getObjetos().get(i).getProbabilidadAcumulada());
                     //System.out.println("Antes del IF" + j + " " + k + " " + i);
 
-                    if ((numAleatorio) < (mochilaTempClon.getObjetos().get(i).getProbabilidadAcumulada()) && ((mochilaTempClon.getObjetos().get(i).getProbabilidadAcumulada()) - mochilaTempClon.getObjetos().get(i).getProbabilidad()) >= (numAleatorio)) {
+                    if ((colonias.get(j).getListaHormigas().get(k).getNroAleatorio()) < (mochila2.getObjetos().get(i).getProbabilidadAcumulada()) && ((mochila2.getObjetos().get(i).getProbabilidadAcumulada()) - mochila2.getObjetos().get(i).getProbabilidad()) >= (colonias.get(j).getListaHormigas().get(k).getNroAleatorio())) {
 
                         double feromonaAcum = colonias.get(j).getListaHormigas().get(k).getFeromonaInicial() + mochila.getObjetos().get(i).getFeromonaAcumulada();
-                        mochilaTempClon.getObjetos().get(i).setFeromonaAcumulada(feromonaAcum);
-                       
+                        mochila2.getObjetos().get(i).setFeromonaAcumulada(feromonaAcum);
+
                         System.out.println("valida if de probabilidad");
 
-                        if (mochilaCaminoHormiga.isVolumenOcupadoCorrecto()) {
-                            mochilaCaminoHormiga.getObjetos().add(mochilaTempClon.getObjetos().get(i));
-                            mochilaCaminoHormiga.getObjetos().get(i).setDisponible(true);
-                            mochilaTempClon.getObjetos().remove(i);
+                        if (mochila2.isVolumenOcupadoCorrecto()) {
+                            mochila2.getObjetos().get(i).setDisponible(true);
                             System.out.println("LLEGA con  " + mochilaCaminoHormiga.getBeneficioObtenido() + "  de beneficio obtenido");
-                        }else { }
-
+                        }
                     }
-
                 }
-
             }
-
-
         }
 
 
@@ -141,6 +123,8 @@ public class GestorMochila {
         for (int i = 0; i < cantObj; i++) {
             obj = new Hormiga();
             obj.setNombre("H" + (i + 1));
+            double numAleatorio = Math.random();
+            obj.setNroAleatorio(numAleatorio);
             hormigas.add(obj);
         }
 
@@ -149,15 +133,10 @@ public class GestorMochila {
 
     public List<Colonia> generarColonias(int cantObj) {
         List<Colonia> colonias = new ArrayList<Colonia>();
-
         Colonia obj;
         for (int i = 0; i < cantObj; i++) {
-            List<Hormiga> hormigas = generarHormigas(cantObj);
             obj = new Colonia();
             obj.setNombre("C" + (i + 1));
-            obj.setListaHormigas(hormigas);
-            obj.setCantidadHormigas(hormigas.size());
-
             colonias.add(obj);
         }
         return colonias;
