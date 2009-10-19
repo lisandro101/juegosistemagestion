@@ -15,7 +15,8 @@ public class Objeto {
     private double beneficio;
     private double volumen;
     private boolean disponible;//es parte de la soluciòn
-    private double feromonaAcumulada = 0.005;
+    private double feromonaAcumulada = 0.05;
+    private double rastroFeromona;
     private double probabilidad;
     private double probabilidadAcumulada;
 

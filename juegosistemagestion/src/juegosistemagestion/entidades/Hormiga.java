@@ -9,7 +9,6 @@ public class Hormiga {
     private double feromonaInicial = 0.1;// es la probabilidad del objeto dividido la suma de las probabilidades de todos
     private double factorEvaporacionFeromona = 0.5;
     private double probAcumulada;
-    private double probNormal;
     private double nroAleatorio;
     List<Objeto> camino;
 
@@ -37,15 +36,7 @@ public class Hormiga {
         this.probAcumulada = probAcumulada;
     }
 
-    public double getProbNormal() {
-        return probNormal;
-    }
-
-    public void setProbNormal(double probNormal) {
-        this.probNormal = probNormal;
-    }
-
-    /**
+     /**
      * @return the nombre
      */
     public String getNombre() {
