@@ -93,7 +93,12 @@ public class PantallaPrincipal extends javax.swing.JDialog {
 
         jLabel1.setText("Cantidad de Objetos:");
 
-        tfCantObjetos.setText("50");
+        tfCantObjetos.setText("10");
+        tfCantObjetos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfCantObjetosActionPerformed(evt);
+            }
+        });
 
         lbBeneficio.setText("Beneficio Objetos:");
 
@@ -103,7 +108,7 @@ public class PantallaPrincipal extends javax.swing.JDialog {
 
         jLabel3.setText(" -");
 
-        tfVolumenSuperior.setText("15");
+        tfVolumenSuperior.setText("30");
 
         jLabel4.setText(" -");
 
@@ -428,9 +433,9 @@ public class PantallaPrincipal extends javax.swing.JDialog {
         Mochila mochila = GestorPersistencia.getInstancia().cargarMochila();
         
         tfCapacidad.setText("" + mochila.getCapacidad());
+        mtb.limpiarTableModel();
         mtb.agregarFilas(mochila.getObjetos());
-        tfCantObjetos.setText(
-                new Integer(mochila.getObjetos().size()).toString());
+        tfCantObjetos.setText("" + mochila.getObjetos().size());
 
         mochilaGlobal = mochila;
 
@@ -439,7 +444,7 @@ public class PantallaPrincipal extends javax.swing.JDialog {
     private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardarActionPerformed
 
         MochilaTableModel mtb = (MochilaTableModel) jXTResultado.getModel();
-        Double capacidad = new Double(tfCapacidad.getText());
+        double capacidad = Double.parseDouble(tfCapacidad.getText());
 
         GestorPersistencia.getInstancia().guardarMochila(capacidad,
                 mtb.getFilas());
@@ -477,7 +482,8 @@ public class PantallaPrincipal extends javax.swing.JDialog {
                 mochilaGlobal.setObjetos(GestorMochila.getInstancia().generarObjetos(
                         beneMin,
                         beneMax, volMin, volMax, cantObj));
-                
+
+                tModel.limpiarTableModel();
                 tModel.agregarFilas(mochilaGlobal.getObjetos());
             }
         }
@@ -486,6 +492,10 @@ public class PantallaPrincipal extends javax.swing.JDialog {
         private void tfBeneficioObFBrutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfBeneficioObFBrutaActionPerformed
             // TODO add your handling code here:
         }//GEN-LAST:event_tfBeneficioObFBrutaActionPerformed
+
+        private void tfCantObjetosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCantObjetosActionPerformed
+            // TODO add your handling code here:
+        }//GEN-LAST:event_tfCantObjetosActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCalcular;
@@ -578,7 +588,7 @@ public class PantallaPrincipal extends javax.swing.JDialog {
         boolean resul = true;
 
         for (int i = 0; i < valor.length(); i++) {
-            if (!Character.isDigit(valor.charAt(i))) {
+            if (!Character.isDigit(valor.charAt(i)) && valor.charAt(i) != '.') {
                 resul = false;
             }
         }
