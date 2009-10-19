@@ -139,14 +139,10 @@ public class GestorMochila {
             objeto.setDisponible(true);
             mochilaA.getObjetos().add(objeto);
 
-            System.out.println("bucle uno");
             for (int paso = 1; paso < (cantidadObjetos / 3); paso++) { //paso=+(cantidadObjetos/3)) {
 
-                System.out.println("bucle dos");
                 for (int j = (i + 1); j < cantidadObjetos;) {
                     objeto = mochila.getObjetos().get(j);
-                    System.out.println("bucle tres");
-                    System.out.println("valor de j: " + j);
                     if (mochilaA.isVolumenOcupadoCorrecto() && !mochilaA.estaEnLaMochila(objeto)) {
                         if ((mochilaA.getVolumenOcupado() +
                                 mochila.getObjetos().get(j).getVolumen()) <= capacidad) {
