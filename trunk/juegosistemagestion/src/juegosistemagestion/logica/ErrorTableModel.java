@@ -8,29 +8,30 @@ package juegosistemagestion.logica;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
-import juegosistemagestion.entidades.Objeto;
+import juegosistemagestion.entidades.Error;
 
 /**
  *
  * @author stafoxter
  */
 
-public class MochilaTableModel extends AbstractTableModel {
+public class ErrorTableModel extends AbstractTableModel {
     private static final long serialVersionUID = 1L;
-    private static final String[] NOMBRE_COLUMNAS = {"Objeto", "Beneficio", "Volumen","En Mochila"};
-    private static final boolean[] COLUMNAS_EDITABLES = {false, false, false, false};
+    private static final String[] NOMBRE_COLUMNAS = {"Error Absoluto", "Error Relativo", "Error Relativo Menor",
+        "Error Relativo Mayor", "Error Relativo Promedio", "   S  ", "Intervalo de Confianza"};
+    private static final boolean[] COLUMNAS_EDITABLES = {false, false, false, false , false, false, false};
     private static final Class[] CLASE_COLUMNAS =
-        {String.class, double.class, double.class, Boolean.class};
+        {double.class, double.class, double.class, double.class, double.class, double.class, double.class};
     
-    private List<Objeto> objetos;
+    private List<Error> errores;
 
     /**
      * Constructor
      * 
      * @param filas Cantidad de filas iniciales
      */
-    public MochilaTableModel(int filas) {
-        this.objetos = new ArrayList<Objeto>(filas > 0 ? filas : 0);
+    public ErrorTableModel(int filas) {
+        this.errores = new ArrayList<Error>(filas > 0 ? filas : 0);
     }
 
     /**
@@ -74,7 +75,7 @@ public class MochilaTableModel extends AbstractTableModel {
      */
     @Override
     public int getRowCount() {
-        return objetos.size();
+        return errores.size();
     }
 
     /**
@@ -100,16 +101,25 @@ public class MochilaTableModel extends AbstractTableModel {
         
         switch(columna) {
             case 0:
-                resultado = objetos.get(fila).getNombre();
+                resultado = errores.get(fila).getErrorAbsoluto();
                 break;
             case 1:
-                resultado = objetos.get(fila).getBeneficio();
+                resultado = errores.get(fila).getErrorRelativo();
                 break;
             case 2:
-                resultado = objetos.get(fila).getVolumen();
+                resultado = errores.get(fila).getErrorRelativoMenor();
                 break;
             case 3:
-                resultado = objetos.get(fila).isDisponible();
+                resultado = errores.get(fila).getErrorRelativoMayor();
+                break;
+            case 4:
+                resultado = errores.get(fila).getErrorRelativoPromedio();
+                break;
+            case 5:
+                resultado = errores.get(fila).getS();
+                break;
+            case 6:
+                resultado = errores.get(fila).getIntervaloDeConfianza();
                 break;
         }
         return resultado;
@@ -118,21 +128,20 @@ public class MochilaTableModel extends AbstractTableModel {
     /**
      * Agrega Proveedor al modelo
      * 
-     * @param objeto
+     * @param proveedor Proveedor a agregar
 
      */
-    public void agregarFila(Objeto objeto) {
-        objetos.add(objeto);
+    public void agregarFila(Error proveedor) {
+        errores.add(proveedor);
         
-        fireTableRowsInserted(objetos.size(), objetos.size());
+        fireTableRowsInserted(errores.size(), errores.size());
     }
     
     
-    public void agregarFilas(List<Objeto> obj) {
-        limpiarTableModel();
-        if(obj != null){
-            objetos.addAll(obj);
-            fireTableRowsInserted(objetos.size()-obj.size(), objetos.size());
+    public void agregarFilas(List<Error> objetos) {
+        if(objetos != null){
+            objetos.addAll(objetos);
+            fireTableRowsInserted(objetos.size()-objetos.size(), objetos.size());
         }
     }
     
@@ -142,9 +151,9 @@ public class MochilaTableModel extends AbstractTableModel {
      * @param cantidad Cantidad a la que se quiere limitar el numero de filas
      */
     public void limitarCantidad(int cantidad) {
-        int cantidadAnterior = objetos.size();
+        int cantidadAnterior = errores.size();
         
-        objetos = objetos.subList(0, cantidad);
+        errores = errores.subList(0, cantidad);
         
         fireTableRowsDeleted(cantidad, cantidadAnterior);
     }
@@ -154,23 +163,23 @@ public class MochilaTableModel extends AbstractTableModel {
      * 
      * @return Todas las filas del modelo
      */
-    public List<Objeto> getFilas() {
-        return objetos;
+    public List<Error> getFilas() {
+        return errores;
     }
     
-    public Objeto getFila(int indice){
-        return objetos.get(indice);
+    public Error getFila(int indice){
+        return errores.get(indice);
         
     }
     
     public void eliminarFila(int indice){        
-        objetos.remove(indice);
+        errores.remove(indice);
         fireTableRowsDeleted(indice, indice);       
     }
     
     public void limpiarTableModel(){
-        int tamanio = objetos.size();
-        objetos.clear();
+        int tamanio = errores.size();
+        errores.clear();
         
         fireTableRowsDeleted(0, tamanio);
     }
