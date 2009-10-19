@@ -557,5 +557,4 @@ public class PantallaPrincipal extends javax.swing.JDialog {
 
         return resul;
     }
-    
 }
