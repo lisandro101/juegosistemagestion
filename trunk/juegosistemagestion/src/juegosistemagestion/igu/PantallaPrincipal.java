@@ -422,21 +422,28 @@ public class PantallaPrincipal extends javax.swing.JDialog {
     }//GEN-LAST:event_btSalirActionPerformed
 
     private void btCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCargarActionPerformed
+        
         MochilaTableModel mtb = (MochilaTableModel) jXTResultado.getModel();
+
         Mochila mochila = GestorPersistencia.getInstancia().cargarMochila();
+        
         tfCapacidad.setText("" + mochila.getCapacidad());
-//        mtb.limpiarTableModel();
         mtb.agregarFilas(mochila.getObjetos());
         tfCantObjetos.setText(
                 new Integer(mochila.getObjetos().size()).toString());
 
+        mochilaGlobal = mochila;
+
     }//GEN-LAST:event_btCargarActionPerformed
 
     private void btGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGuardarActionPerformed
+
         MochilaTableModel mtb = (MochilaTableModel) jXTResultado.getModel();
         Double capacidad = new Double(tfCapacidad.getText());
+
         GestorPersistencia.getInstancia().guardarMochila(capacidad,
                 mtb.getFilas());
+
     }//GEN-LAST:event_btGuardarActionPerformed
 
     private void btErrorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btErrorActionPerformed
