@@ -134,13 +134,20 @@ public class Error {
        //tengo que buscar del conj de soluciones de Hormiga, buscar LA DE MENOR BENEFICION, Es decir
        //buscar la colonia que obtubo el menor benefico.
        //ARIEL, ESTOY AHY QUE COORDINARLO, VOS Y YO.
-       //double MEx=SolucionExacta.getBeneficioMenor();
-       //double MHeuMen= SolucionHeuristica.getBeneficioObtenido();
-       //errorRelativoMenor=MEx-MHeuMen;
-       //System.out.println("__El Error Relativo Menor es:__");
-       //System.out.println(errorRelativoMenor);
-       //System.out.println("________\n");
-         return 0;
+       //Busco ahora, si el valor actual de la solucion es Menor a la Guardada
+         errorRelativoMenor=SolucionHeuristica.getBeneficioMenor();
+       if(SolucionHeuristica.getBeneficioObtenido()<SolucionHeuristica.getBeneficioMenor())
+       {
+       errorRelativoMenor=SolucionHeuristica.getBeneficioObtenido();    
+       SolucionHeuristica.setBeneficioMenor(errorRelativoMenor);
+       }
+       double MEx=SolucionExacta.getBeneficioMenor();
+       double MHeuMen= SolucionHeuristica.getBeneficioMenor();
+       errorRelativoMenor=MEx-MHeuMen;
+       System.out.println("__El Error Relativo Menor es:__");
+       System.out.println(errorRelativoMenor);
+       System.out.println("________\n");
+         return errorRelativoMenor;
 
     }
       public double ErrorRelativoMayor(Mochila SolucionExacta ,Mochila SolucionHeuristica)
@@ -148,43 +155,63 @@ public class Error {
        //tengo que buscar del conj de soluciones de Hormiga, buscar LA DE MAYOR BENEFICION, Es decir
        //buscar la colonia que obtubo el MAYOR benefico.
        //ARIEL, ESTOY AHY QUE COORDINARLO, VOS Y YO.
-       //double MEx=SolucionExacta.getBeneficioMayor();
-       //double MHeuMax= SolucionHeuristica.getBeneficioObtenido();
-       //errorRelativoMenor=MEx-MHeuMay;
-       //System.out.println("__El Error Relativo Mayor es:__");
-       //System.out.println(errorRelativoMay);
-       //System.out.println("________\n");
-         return 0;
+
+          errorRelativoMayor=SolucionHeuristica.getBeneficioMenor();
+       if(SolucionHeuristica.getBeneficioObtenido()>SolucionHeuristica.getBeneficioMayor())
+       {
+       errorRelativoMayor=SolucionHeuristica.getBeneficioObtenido();
+       SolucionHeuristica.setBeneficioMenor(errorRelativoMayor);
+       }
+       double MEx=SolucionExacta.getBeneficioMayor();
+       double MHeuMay= SolucionHeuristica.getBeneficioMayor();
+       errorRelativoMenor=MEx-MHeuMay;
+       System.out.println("__El Error Relativo Mayor es:__");
+       System.out.println(errorRelativoMayor);
+       System.out.println("________\n");
+         return errorRelativoMayor;
 
     }
      public double ErrorRelativoPromedio( Mochila SolucionHeuristica)
     {
        //Calcula el Error Promedio entre el Mejor Error Ralatico y el Menor.
-         //double ERMay=SolucionHeuristica.getBeneficioMayor();
-         //double ERMen=SolucionHeuristica.getBeneficioMenor();
-         //errorRelativoPromedio=((ERMay-ERMen)/2);
-         //System.out.println("__El Error Relativo Promedio es:__");
-         //System.out.println(errorRelativoPromedio);
-         //System.out.println("________\n");
-         return 0;
+         double ERMay=SolucionHeuristica.getBeneficioMayor();
+         double ERMen=SolucionHeuristica.getBeneficioMenor();
+         errorRelativoPromedio=((ERMay-ERMen)/2);
+         System.out.println("__El Error Relativo Promedio es:__");
+         System.out.println(errorRelativoPromedio);
+         System.out.println("________\n");
+         return errorRelativoPromedio;
     }
-      public double S( Mochila SolucionHeuristica)
+      public double S(double errorRelativoPromedio , Mochila SolucionHeuristica)
     {
 
-       //double ERP=SolucionExacta.ErrorRelativoPromedio(SolucionHeuristica);
-       //double M= SolucionHeuristica.getCapacidad();
-       //s=;
-       //System.out.println("__El Error Relativo Menor es:__");
-       //System.out.println(errorRelativoMenor);
-       //System.out.println("________\n");
-         return 0;
+       double ERP = errorRelativoPromedio;
+       double M= SolucionHeuristica.getCapacidad();
+       double Sumatoria=0;
+       Sumatoria= (Math.pow(SolucionHeuristica.getBeneficioObtenido()-ERP,2))+ Sumatoria;
+       s=((1/M-1)*Sumatoria);
+       System.out.println("__El Valor de S es :__");
+       System.out.println(s);
+       System.out.println("________\n");
+         return s;
 
     }
      public double IntervaloDeConfiaza( Mochila SolucionHeuristica)
     {
-
+ double IntConf;
+ double M=SolucionHeuristica.getCapacidad();
+ intervaloDeConfianza= errorRelativoPromedio +(1.96*(s/(Math.sqrt(M))));
        //dudas para implementar a coordinar con ARIEL.
-         return 0;
+         return intervaloDeConfianza;
 
     }
+   
+
+
+
+
+
+
+
+
 }

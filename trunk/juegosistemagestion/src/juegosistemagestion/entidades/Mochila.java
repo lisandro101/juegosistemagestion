@@ -15,11 +15,31 @@ import java.util.List;
 public class Mochila {
 
     private double capacidad;
+    private double BeneficioMenor;
+    private double BeneficioMayor;
     private List<Objeto> objetos;
 
     /**
      * @return the capacidad
      */
+       public void setBeneficioMenor(double capacidad) {
+        this.capacidad = BeneficioMenor;
+    }
+
+    public double getBeneficioMayor() {
+        return BeneficioMayor;
+    }
+       public void setBeneficioMayor(double capacidad) {
+        this.capacidad = BeneficioMayor;
+    }
+
+    public double getBeneficioMenor() {
+        return BeneficioMenor;
+    }
+
+
+
+
     public double getCapacidad() {
         return capacidad;
     }
