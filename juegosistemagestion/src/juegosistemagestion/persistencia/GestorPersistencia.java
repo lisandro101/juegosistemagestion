@@ -124,7 +124,7 @@ public class GestorPersistencia {
 
     public void guardarMochila(double capacidad, List<Objeto> objetos) {
 
-        abrirArchivoEscritura(file); //TODO: deshardcodear
+        abrirArchivoEscritura(file);
         escribirArchivo("" + capacidad + "\n");
 
         for (Objeto objecto : objetos) {
@@ -149,9 +149,7 @@ public class GestorPersistencia {
         abrirArchivoLectura(file);
 
         String capacidad = leerArchivo();
-        System.out.println("Capacidad (String): " + capacidad); //TODO: Eliminar
         mochila.setCapacidad(Double.parseDouble(capacidad));
-        System.out.println("Capacidad (Double): " +  Double.parseDouble(capacidad)); //TODO: Eliminar
 
         while (noEsFinArchivo()) {
 
@@ -160,11 +158,7 @@ public class GestorPersistencia {
             linea = leerArchivo();
 
             beneficio = linea.substring(0, linea.lastIndexOf(separador));
-            System.out.println("Beneficio (String): " +  + Double.parseDouble(beneficio)); //TODO: Eliminar
-            System.out.println("Beneficio (Double): " +  Double.parseDouble(beneficio)); //TODO: Eliminar
             volumen = linea.substring(linea.lastIndexOf(separador) + 1, linea.length());
-            System.out.println("Volumen (String): " +  + Double.parseDouble(volumen)); //TODO: Eliminar
-            System.out.println("Volumen (Double): " +  Double.parseDouble(volumen)); //TODO: Eliminar
 
             objeto.setBeneficio(Double.parseDouble(beneficio));
             objeto.setVolumen(Double.parseDouble(volumen));
