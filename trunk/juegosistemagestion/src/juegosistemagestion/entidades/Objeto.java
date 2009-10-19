@@ -15,7 +15,9 @@ public class Objeto {
     private double beneficio;
     private double volumen;
     private boolean disponible;//es parte de la soluciòn
-    double feromonaAcumulada;
+    private double feromonaAcumulada = 0.005;
+    private double probabilidad;
+    private double probabilidadAcumulada;
 
 
     /**
@@ -72,6 +74,48 @@ public class Objeto {
      */
     public void setDisponible(boolean disponible) {
         this.disponible = disponible;
+    }
+
+    /**
+     * @return the feromonaAcumulada
+     */
+    public double getFeromonaAcumulada() {
+        return feromonaAcumulada;
+    }
+
+    /**
+     * @param feromonaAcumulada the feromonaAcumulada to set
+     */
+    public void setFeromonaAcumulada(double feromonaAcumulada) {
+        this.feromonaAcumulada = feromonaAcumulada;
+    }
+
+    /**
+     * @return the probabilidad
+     */
+    public double getProbabilidad() {
+        return probabilidad;
+    }
+
+    /**
+     * @param probabilidad the probabilidad to set
+     */
+    public void setProbabilidad(double probabilidad) {
+        this.probabilidad = probabilidad;
+    }
+
+    /**
+     * @return the probabilidadAcumulada
+     */
+    public double getProbabilidadAcumulada() {
+        return probabilidadAcumulada;
+    }
+
+    /**
+     * @param probabilidadAcumulada the probabilidadAcumulada to set
+     */
+    public void setProbabilidadAcumulada(double probabilidadAcumulada) {
+        this.probabilidadAcumulada = probabilidadAcumulada;
     }
     
 }

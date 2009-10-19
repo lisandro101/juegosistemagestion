@@ -10,6 +10,7 @@ public class Hormiga {
     private double factorEvaporacionFeromona = 0.5;
     private double probAcumulada;
     private double probNormal;
+    private double nroAleatorio;
     List<Objeto> camino;
 
     public double getFeromonaInicial() {
@@ -56,5 +57,19 @@ public class Hormiga {
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    /**
+     * @return the nroAleatorio
+     */
+    public double getNroAleatorio() {
+        return nroAleatorio;
+    }
+
+    /**
+     * @param nroAleatorio the nroAleatorio to set
+     */
+    public void setNroAleatorio(double nroAleatorio) {
+        this.nroAleatorio = nroAleatorio;
     }
 }

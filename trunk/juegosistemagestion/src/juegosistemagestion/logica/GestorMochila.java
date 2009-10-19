@@ -58,44 +58,63 @@ public class GestorMochila {
 
     public void calcularPorHormiga(Mochila mochila) {
         int cantidadObjetos = mochila.getObjetos().size();
-        
-        for (int i = 0; i < cantidadObjetos; i++) {
+        List<Colonia> colonias = generarColonias(10);
+
+
+        for (int j = 0; j < colonias.size(); j++) {
+
+            for (int k = 0; k < colonias.get(j).getListaHormigas().size(); k++) {
+                colonias.get(j).getListaHormigas().get(k).setNroAleatorio(generarNroAleatorio(0.0, 1.0));
+                for (int i = 0; i < cantidadObjetos; i++) {
+
+
+                    mochila.getObjetos().get(i).setProbabilidad(1 / cantidadObjetos);
+                    double Acum = +1 / cantidadObjetos;
+                    mochila.getObjetos().get(i).setProbabilidadAcumulada(Acum);
+
+                    if ((colonias.get(j).getListaHormigas().get(k).getNroAleatorio()) < (mochila.getObjetos().get(i).getProbabilidadAcumulada()) && ((mochila.getObjetos().get(i).getProbabilidadAcumulada()) - mochila.getObjetos().get(i).getProbabilidad()) >= (colonias.get(j).getListaHormigas().get(k).getNroAleatorio())) {
+                       // mochila.getObjetos().get(i).setFeromonaAcumulada(Acum) =+ colonias.get(j).getListaHormigas().get(k).getFeromonaInicial();
+
+                    }
+
+                }
+
+            }
 
 
         }
 
-    
 
 
     }
 //===========================================================================================================================================
-public List<Hormiga> generarHormigas(int cantObj) {
+
+    public List<Hormiga> generarHormigas(int cantObj) {
         List<Hormiga> hormigas = new ArrayList<Hormiga>();
         Hormiga obj;
         for (int i = 0; i < cantObj; i++) {
             obj = new Hormiga();
             obj.setNombre("H" + (i + 1));
-
             hormigas.add(obj);
         }
+
         return hormigas;
     }
 
-public List<Colonia> generarColonias(int cantObj) {
+    public List<Colonia> generarColonias(int cantObj) {
         List<Colonia> colonias = new ArrayList<Colonia>();
-       // List<Hormiga> hormigas = generarHormigas(10);
+        List<Hormiga> hormigas = generarHormigas(10);
         Colonia obj;
         for (int i = 0; i < cantObj; i++) {
             obj = new Colonia();
             obj.setNombre("C" + (i + 1));
-            obj.setListaHormigas(generarHormigas(10));
+            obj.setListaHormigas(hormigas);
+            obj.setCantidadHormigas(hormigas.size());
 
             colonias.add(obj);
         }
         return colonias;
     }
-
-
 
 //============================================================================================================================================
     public void calcularPorFuerzaBruta(Mochila mochila) {

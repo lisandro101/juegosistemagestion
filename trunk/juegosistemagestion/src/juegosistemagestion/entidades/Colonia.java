@@ -68,14 +68,7 @@ public class Colonia {
         return listaHormigas;
     }
 
-    /**
-     * @param listaHormigas the listaHormigas to set
-     */
-    public void setListaHormigas(List<Hormiga> listaHormigas) {
-        this.listaHormigas = listaHormigas;
-    }
-
-    /**
+   /**
      * @return the nombre
      */
     public String getNombre() {
@@ -87,6 +80,14 @@ public class Colonia {
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    /**
+     * @param listaHormigas the listaHormigas to set
+     */
+    public void setListaHormigas( // beneficio acumulado
+    List<Hormiga> listaHormigas) {
+        this.listaHormigas = listaHormigas;
     }
 
 }
