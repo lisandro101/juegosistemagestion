@@ -104,16 +104,25 @@ public class GestorMochila {
                     double prob =0;
                     prob =+ calcularProbabilidad(mochila2.getObjetos(), i);
                     probAcumulada = probAcumulada + prob;
-                   
+                    mochila2.getObjetos().get(i).setProbabilidad(prob);
+                    mochila2.getObjetos().get(i).setProbabilidadAcumulada(probAcumulada);
+                    mochila2.getObjetos().get(i).setNumAleatorioMin((mochila2.getObjetos().get(i).getProbabilidadAcumulada()) - (mochila2.getObjetos().get(i).getProbabilidad()));
+                    mochila2.getObjetos().get(i).setNumAleatorioMax(mochila2.getObjetos().get(i).getProbabilidadAcumulada());
+
+
                     //System.out.println("La probabilidad del Objeto "+ i + " es " + calcularProbabilidad(mochila2.getObjetos(), i));
                    
                     //System.out.println("La probabilidad Acumulada es " + probAcumulada);
-                   
+                   double numAlminObj = mochila2.getObjetos().get(i).getNumAleatorioMin();
+                   double numAlmaxObj = mochila2.getObjetos().get(i).getNumAleatorioMax();
+                   double numAlHormiga=(colonias.get(j).getListaHormigas().get(k).getNroAleatorio());
+                   System.out.println("   numAlmin  " + numAlminObj + "   numAlmax  " + numAlmaxObj);
 
-                    if ((colonias.get(j).getListaHormigas().get(k).getNroAleatorio()) < (mochila2.getObjetos().get(i).getProbabilidadAcumulada()) && ((mochila2.getObjetos().get(i).getProbabilidadAcumulada()) - mochila2.getObjetos().get(i).getProbabilidad()) >= (colonias.get(j).getListaHormigas().get(k).getNroAleatorio())) {
+                   if ((numAlminObj <= numAlHormiga  &&  numAlmaxObj  > numAlHormiga)) {
 
                         double feromonaAcum = colonias.get(j).getListaHormigas().get(k).getFeromonaInicial() + mochila.getObjetos().get(i).getFeromonaAcumulada();
                         mochila2.getObjetos().get(i).setFeromonaAcumulada(feromonaAcum);
+                        mochila2.getObjetos().get(i).setDisponible(true);
 
                         System.out.println("valida if de probabilidad");
 

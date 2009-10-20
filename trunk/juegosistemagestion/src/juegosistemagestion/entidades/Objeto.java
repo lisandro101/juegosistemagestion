@@ -19,6 +19,8 @@ public class Objeto {
     private double rastroFeromona;
     private double probabilidad;
     private double probabilidadAcumulada;
+    private double numAleatorioMin;
+    private double numAleatorioMax;
 
 
     /**
@@ -117,6 +119,34 @@ public class Objeto {
      */
     public void setProbabilidadAcumulada(double probabilidadAcumulada) {
         this.probabilidadAcumulada = probabilidadAcumulada;
+    }
+
+    /**
+     * @return the numAleatorioMin
+     */
+    public double getNumAleatorioMin() {
+        return numAleatorioMin;
+    }
+
+    /**
+     * @param numAleatorioMin the numAleatorioMin to set
+     */
+    public void setNumAleatorioMin(double numAleatorioMin) {
+        this.numAleatorioMin = numAleatorioMin;
+    }
+
+    /**
+     * @return the numAleatorioMax
+     */
+    public double getNumAleatorioMax() {
+        return numAleatorioMax;
+    }
+
+    /**
+     * @param numAleatorioMax the numAleatorioMax to set
+     */
+    public void setNumAleatorioMax(double numAleatorioMax) {
+        this.numAleatorioMax = numAleatorioMax;
     }
     
 }
