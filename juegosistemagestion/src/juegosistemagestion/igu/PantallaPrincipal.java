@@ -416,7 +416,7 @@ public class PantallaPrincipal extends javax.swing.JDialog {
 
             //GestorMochila.getInstancia().inicializarMochila(mochila);
             GestorMochila.getInstancia().calcularPorFuerzaBruta(mochilaGlobal);
-            GestorMochila.getInstancia().calcularPorHormiga(mochilaGlobal);
+            //GestorMochila.getInstancia().calcularPorHormiga(mochilaGlobal);
 
 //        }
 //        }
