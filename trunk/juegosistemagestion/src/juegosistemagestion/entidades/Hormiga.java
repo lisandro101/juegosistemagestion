@@ -7,10 +7,10 @@ import java.util.List;
 public class Hormiga {
     private String nombre;
     private double feromonaInicial = 0.1;// es la probabilidad del objeto dividido la suma de las probabilidades de todos
-    private double factorEvaporacionFeromona = 0.5;
+    private double factorEvaporacionFeromona = 0.05;
     private double probAcumulada;
     private double nroAleatorio;
-    List<Objeto> camino;
+    private List<Objeto> caminoHormiga = null;
 
     public double getFeromonaInicial() {
         return feromonaInicial;
@@ -62,5 +62,19 @@ public class Hormiga {
      */
     public void setNroAleatorio(double nroAleatorio) {
         this.nroAleatorio = nroAleatorio;
+    }
+
+    /**
+     * @return the caminoHormiga
+     */
+    public List<Objeto> getCaminoHormiga() {
+        return caminoHormiga;
+    }
+
+    /**
+     * @param caminoHormiga the caminoHormiga to set
+     */
+    public void setCaminoHormiga(List<Objeto> caminoHormiga) {
+        this.caminoHormiga = caminoHormiga;
     }
 }
