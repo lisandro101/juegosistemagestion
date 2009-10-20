@@ -29,6 +29,14 @@ public class GestorMochila {
     private GestorMochila() {
     }
 
+    private double calcularProbabilidad(List<Objeto> objetos,int i) {
+        int cantObjetos = objetos.size();
+        double probabilidad = 1.0/(double)cantObjetos;
+        //objetos.get(i).setProbabilidad(probabilidad);
+        //System.out.println("La probabilidad del Objeto "+ i + " es "+objetos.get(i).getProbabilidad());
+        return probabilidad;
+        }
+
     private double generarNroAleatorio(double min, double max) {
         double uno;
 //        Random r;
@@ -58,10 +66,11 @@ public class GestorMochila {
 //--------------------------------------------------------------------------------------------------------------------------------------------------
 
     public void calcularPorHormiga(Mochila mochila) {
-        //int cantidadObjetos = mochila.getObjetos().size();
+       
         System.out.println("=============================================================================================");
         System.out.println("======================================Metodo calcular Por Hormiga============================");
         System.out.println("=============================================================================================");
+        System.out.println("mochila = "+mochila.getObjetos().size());
         List<Colonia> colonias = generarColonias(5);
         List<Hormiga> hormigas = generarHormigas(5);
         for (Colonia colonia : colonias) {
@@ -73,9 +82,7 @@ public class GestorMochila {
 
 
         //--------------------mochila armada del paso de las hormigas------------------------
-        List<Objeto> objetosCaminoHormiga = new ArrayList<Objeto>();
-        Mochila mochilaCaminoHormiga = new Mochila();
-
+      
 
 
 
@@ -84,17 +91,24 @@ public class GestorMochila {
 
             for (int k = 0; k < colonias.get(j).getListaHormigas().size(); k++) {
                 System.out.println("=====================================Hormiga " + k + "=============================");
-
-                Mochila mochila2 = new Mochila();// para sacar objetos seleccionados por el número aleatorio
+                double numAleatorio = Math.random();
+                colonias.get(j).getListaHormigas().get(k).setNroAleatorio(numAleatorio);
+                Mochila mochila2 = new Mochila();//clon de la mochila
                 mochila2.setObjetos(mochila.getObjetos());
                 double capacidad = mochila.getCapacidad();
                 mochila2.setCapacidad(capacidad);
-
+                System.out.println("mochila2 = "+mochila2.getObjetos().size());
+                double probAcumulada = 0;
                 for (int i = 0; i < mochila2.getObjetos().size(); i++) {
                     System.out.println("=====================================Objeto " + i + "=============================");
-                    //System.out.println("Hay " + vuelta);
-                    //System.out.println("La probabilidad Acumulada es " + mochila2.getObjetos().get(i).getProbabilidadAcumulada());
-                    //System.out.println("Antes del IF" + j + " " + k + " " + i);
+                    double prob =0;
+                    prob =+ calcularProbabilidad(mochila2.getObjetos(), i);
+                    probAcumulada = probAcumulada + prob;
+                   
+                    //System.out.println("La probabilidad del Objeto "+ i + " es " + calcularProbabilidad(mochila2.getObjetos(), i));
+                   
+                    //System.out.println("La probabilidad Acumulada es " + probAcumulada);
+                   
 
                     if ((colonias.get(j).getListaHormigas().get(k).getNroAleatorio()) < (mochila2.getObjetos().get(i).getProbabilidadAcumulada()) && ((mochila2.getObjetos().get(i).getProbabilidadAcumulada()) - mochila2.getObjetos().get(i).getProbabilidad()) >= (colonias.get(j).getListaHormigas().get(k).getNroAleatorio())) {
 
@@ -105,7 +119,7 @@ public class GestorMochila {
 
                         if (mochila2.isVolumenOcupadoCorrecto()) {
                             mochila2.getObjetos().get(i).setDisponible(true);
-                            System.out.println("LLEGA con  " + mochilaCaminoHormiga.getBeneficioObtenido() + "  de beneficio obtenido");
+                            System.out.println(mochila2.getBeneficioObtenido() + "  de beneficio obtenido");
                         }
                     }
                 }
