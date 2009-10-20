@@ -10,7 +10,7 @@ public class Hormiga {
     private double factorEvaporacionFeromona = 0.05;
     private double probAcumulada;
     private double nroAleatorio;
-    private List<Objeto> caminoHormiga = null;
+    private List<Mochila> caminoHormiga;
 
     public double getFeromonaInicial() {
         return feromonaInicial;
@@ -67,14 +67,15 @@ public class Hormiga {
     /**
      * @return the caminoHormiga
      */
-    public List<Objeto> getCaminoHormiga() {
+    public List<Mochila> getCaminoHormiga() {
         return caminoHormiga;
     }
 
     /**
      * @param caminoHormiga the caminoHormiga to set
      */
-    public void setCaminoHormiga(List<Objeto> caminoHormiga) {
+    public void setCaminoHormiga(List<Mochila> caminoHormiga) {
         this.caminoHormiga = caminoHormiga;
     }
+
 }
