@@ -67,10 +67,12 @@ public class GestorMochila {
 
     public void calcularPorHormiga(Mochila mochila) {
 
-        System.out.println("=============================================================================================");
-        System.out.println("======================================Metodo calcular Por Hormiga============================");
-        System.out.println("=============================================================================================");
-        System.out.println("mochila = " + mochila.getObjetos().size());
+       // System.out.println("=============================================================================================");
+       // System.out.println("======================================Metodo calcular Por Hormiga============================");
+       // System.out.println("=============================================================================================");
+
+        //System.out.println("mochila = " + mochila.getObjetos().size());
+
         mochila.noDisponibleTodosLosObjetos();
         List<Colonia> colonias = generarColonias(5);
         List<Hormiga> hormigas = generarHormigas(5);
@@ -78,82 +80,110 @@ public class GestorMochila {
             colonia.setListaHormigas(hormigas);
         }
 
-        System.out.println("Colonias");
-
-
-
-        //--------------------mochila armada del paso de las hormigas------------------------
-
+        //System.out.println("Colonias");
 
 
 
         for (int j = 0; j < colonias.size(); j++) {
-            System.out.println("=====================================Colonia " + j + "=============================");
+            //System.out.println("=====================================Colonia " + j + "=============================");
+
+
 
             for (int k = 0; k < colonias.get(j).getListaHormigas().size(); k++) {
-                System.out.println("=====================================Hormiga " + k + "=============================");
-                double numAleatorio = Math.random();
-                colonias.get(j).getListaHormigas().get(k).setNroAleatorio(numAleatorio);
+               // System.out.println("=====================================Hormiga " + k + "=============================");
+
+
+                //System.out.println("mochila2 = "+mochila2.getObjetos().size());
+                double probAcumulada = 0;
+
                 Mochila mochila2 = new Mochila();//clon de la mochila
                 mochila2.setObjetos(mochila.getObjetos());
                 mochila2.noDisponibleTodosLosObjetos();
                 double capacidad = mochila.getCapacidad();
                 mochila2.setCapacidad(capacidad);
-                //System.out.println("mochila2 = "+mochila2.getObjetos().size());
-                double probAcumulada = 0;
-                 List<Objeto> objHorm = new ArrayList<Objeto>();
 
-                for (int i = 0; i < mochila2.getObjetos().size(); i++) {
-                    System.out.println("=====================================Objeto " + i + "=============================");
-                    double prob = 0;
-                    prob = +calcularProbabilidad(mochila2.getObjetos(), i);
-                    probAcumulada = probAcumulada + prob;
-                    mochila2.getObjetos().get(i).setProbabilidad(prob);
-                    mochila2.getObjetos().get(i).setProbabilidadAcumulada(probAcumulada);
-                    mochila2.getObjetos().get(i).setNumAleatorioMin((mochila2.getObjetos().get(i).getProbabilidadAcumulada()) - (mochila2.getObjetos().get(i).getProbabilidad()));
-                    mochila2.getObjetos().get(i).setNumAleatorioMax(mochila2.getObjetos().get(i).getProbabilidadAcumulada());
+                List<Mochila> objHorm = new ArrayList<Mochila>();
+
+                List<Objeto> objetos = new ArrayList<Objeto>();
+                Mochila mochilaPorHormiga = new Mochila();
+                mochilaPorHormiga.setObjetos(objetos);
+                mochilaPorHormiga.setCapacidad(mochila.getCapacidad());
+
+                for (int z = 0; z < mochila.getObjetos().size(); z++) {
 
 
-                   
-                    double numAlminObj = mochila2.getObjetos().get(i).getNumAleatorioMin();
-                    double numAlmaxObj = mochila2.getObjetos().get(i).getNumAleatorioMax();
-                    double numAlHormiga = (colonias.get(j).getListaHormigas().get(k).getNroAleatorio());
-                    System.out.println("   numAlmin  " + numAlminObj + "   numAlmax  " + numAlmaxObj);
+                    if (((mochila2.getVolumenOcupado() <= capacidad))) {
 
-                    if ((numAlminObj <= numAlHormiga && numAlmaxObj > numAlHormiga)) {
+                        double numAleatorio = Math.random();
+                        colonias.get(j).getListaHormigas().get(k).setNroAleatorio(numAleatorio);
 
-                        double feromonaAcum = colonias.get(j).getListaHormigas().get(k).getFeromonaInicial() + mochila.getObjetos().get(i).getFeromonaAcumulada();
-                        mochila2.getObjetos().get(i).setFeromonaAcumulada(feromonaAcum);
-                        mochila2.getObjetos().get(i).setDisponible(true);
 
-                        //System.out.println("valida if de probabilidad");
 
-                        if ((mochila2.getVolumenOcupado() + mochila2.getObjetos().get(i).getVolumen()) <= capacidad) {
-                            mochila2.getObjetos().get(i).setDisponible(true);
+                        for (int i = 0; i < mochila2.getObjetos().size(); i++) {
+                           // System.out.println("=====================================Objeto " + i + "=============================");
+                            double prob = 0;
 
-                            Objeto objeto =mochila2.getObjetos().get(i);
-                            objHorm.add(objeto);
-                            
+                            prob = calcularProbabilidad(mochila2.getObjetos(), i);
+                            probAcumulada = probAcumulada + prob;
+                            mochila2.getObjetos().get(i).setProbabilidad(prob);
+                            mochila2.getObjetos().get(i).setProbabilidadAcumulada(probAcumulada);
+                            mochila2.getObjetos().get(i).setNumAleatorioMin((mochila2.getObjetos().get(i).getProbabilidadAcumulada()) - (mochila2.getObjetos().get(i).getProbabilidad()));
+                            mochila2.getObjetos().get(i).setNumAleatorioMax(mochila2.getObjetos().get(i).getProbabilidadAcumulada());
 
-                            System.out.println("  Volumen Ocupado  " + mochila2.getVolumenOcupado());
-                            System.out.println(mochila2.getBeneficioObtenido() + "  de beneficio obtenido");
-                        } else {
-                            System.out.println("Se lleno la mochila");
 
-                        }
-                    }
 
-                }//i
+                            double numAlminObj = mochila2.getObjetos().get(i).getNumAleatorioMin();
+                            double numAlmaxObj = mochila2.getObjetos().get(i).getNumAleatorioMax();
+                            double numAlHormiga = (colonias.get(j).getListaHormigas().get(k).getNroAleatorio());
+                            //System.out.println("   numAlmin  " + numAlminObj + "   numAlmax  " + numAlmaxObj);
+
+                            if ((numAlminObj <= numAlHormiga && numAlmaxObj > numAlHormiga)) {
+
+                                double feromonaAcum = colonias.get(j).getListaHormigas().get(k).getFeromonaInicial() + mochila.getObjetos().get(i).getFeromonaAcumulada();
+                                mochila2.getObjetos().get(i).setFeromonaAcumulada(feromonaAcum);
+                                mochila2.getObjetos().get(i).setDisponible(true);
+
+                                //System.out.println("valida if de probabilidad");
+
+                                if ((mochilaPorHormiga.getVolumenOcupado() + mochila2.getObjetos().get(i).getVolumen()) <= capacidad) {
+                                    mochila2.getObjetos().get(i).setDisponible(true);
+                                    Objeto obj = new Objeto();
+                                    obj = mochila2.getObjetos().get(i);
+                                    mochilaPorHormiga.getObjetos().add(obj);
+                                    mochila2.getObjetos().remove(i);
+                                   // System.out.println("El objeto " + i + " esta asignado");
+
+
+
+                                } else {
+                                    //System.out.println("Se lleno la mochila");
+
+                                }
+                            }
+                        }//i
+
+                    }//if
+                    probAcumulada = 0;
+                }//z
+               
+
+                objHorm.add(mochilaPorHormiga);
+
                 colonias.get(j).getListaHormigas().get(k).setCaminoHormiga(objHorm);
-                System.out.println("La hormiga"+ k + "tiene: "+ colonias.get(j).getListaHormigas().get(k).getCaminoHormiga().size() + "objetos");
+
+                colonias.get(j).getListaHormigas().get(k).getCaminoHormiga().add(mochilaPorHormiga);
+               
 
             }//k
 
-        }//j
+
+        }   //j
 
 
 
-    }
+        }//method
+
+
 //===========================================================================================================================================
 
     public List<Hormiga> generarHormigas(int cantObj) {
@@ -180,6 +210,17 @@ public class GestorMochila {
         }
         return colonias;
     }
+
+    public double actualizarFeromona(Hormiga obj){
+        double ferFinal =0;
+        for(int i=0;i<obj.getCaminoHormiga().size();i++){
+        double evaporacionFeromona=obj.getFactorEvaporacionFeromona();
+        double fer=obj.getCaminoHormiga().get(i).getObjetos().get(i).getFeromonaAcumulada() + obj.getFeromonaInicial();
+        ferFinal = fer * evaporacionFeromona;
+        }
+        return ferFinal;
+    };
+
 
 //============================================================================================================================================
     public void calcularPorFuerzaBruta(Mochila mochila) {
