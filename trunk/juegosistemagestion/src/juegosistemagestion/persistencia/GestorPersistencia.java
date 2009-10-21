@@ -169,7 +169,7 @@ public class GestorPersistencia {
             objeto.setBeneficio(Double.parseDouble(beneficio));
             objeto.setVolumen(Double.parseDouble(volumen));
             objeto.setNombre("" + cantidad);
-            objeto.setDisponible(false);
+            objeto.setDisponibleUsuario(false);
 
             objetos.add(objeto);
         }
