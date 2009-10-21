@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import juegosistemagestion.entidades.Colonia;
 import juegosistemagestion.entidades.Mochila;
+import juegosistemagestion.entidades.Objeto;
 import juegosistemagestion.logica.GestorMochila;
 import juegosistemagestion.logica.MochilaTableModel;
 import juegosistemagestion.persistencia.GestorPersistencia;
@@ -150,7 +151,7 @@ public class PantallaPrincipal extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(tfBeneficioSuperior, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(lbVolumen))
-                .addContainerGap(429, Short.MAX_VALUE))
+                .addContainerGap(357, Short.MAX_VALUE))
         );
         jpParametrosLayout.setVerticalGroup(
             jpParametrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,6 +207,16 @@ public class PantallaPrincipal extends javax.swing.JDialog {
             }
         });
         jXTResultado.setColumnSelectionAllowed(true);
+        jXTResultado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jXTResultadoMouseReleased(evt);
+            }
+        });
+        jXTResultado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jXTResultadoKeyReleased(evt);
+            }
+        });
         jScrollPane2.setViewportView(jXTResultado);
         jXTResultado.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
@@ -352,14 +363,14 @@ public class PantallaPrincipal extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpResultadosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpResultadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpResultadosLayout.createSequentialGroup()
                         .addComponent(jXPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jXPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jXPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jXPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE))
+                    .addComponent(jXPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 569, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         jpResultadosLayout.setVerticalGroup(
@@ -423,7 +434,7 @@ public class PantallaPrincipal extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jxPArchivos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 736, Short.MAX_VALUE)
+                    .addComponent(jxPArchivos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
                     .addComponent(jpParametros, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jpResultados, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
@@ -474,8 +485,7 @@ public class PantallaPrincipal extends javax.swing.JDialog {
 
             tfVolumenOcupadoFBruta.setText(String.valueOf(mochi.getVolumenOcupadoFBruta()));
             tfBeneficioObFBruta.setText(String.valueOf(mochi.getBeneficioObtenidoFBruta()));
-            System.out.println("volumen: "+mochi.getVolumenOcupadoFBruta());
-            System.out.println("Beneficio: "+mochi.getBeneficioObtenidoFBruta());
+
         }
            
             //Mochila mochi = GestorMochila.getInstancia().calcularPorFuerzaBruta(mochilaGlobal);
@@ -562,6 +572,17 @@ public class PantallaPrincipal extends javax.swing.JDialog {
         private void tfCantObjetosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCantObjetosActionPerformed
             // TODO add your handling code here:
         }//GEN-LAST:event_tfCantObjetosActionPerformed
+
+        private void jXTResultadoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jXTResultadoMouseReleased
+            mochilaGlobal.setObjetos(tModel.getFilas());
+            calcularEntradasUsuario(mochilaGlobal);
+            
+        }//GEN-LAST:event_jXTResultadoMouseReleased
+
+        private void jXTResultadoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jXTResultadoKeyReleased
+            mochilaGlobal.setObjetos(tModel.getFilas());
+            calcularEntradasUsuario(mochilaGlobal);
+        }//GEN-LAST:event_jXTResultadoKeyReleased
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCalcularFBruta;
@@ -571,8 +592,6 @@ public class PantallaPrincipal extends javax.swing.JDialog {
     private javax.swing.JButton btGuardar;
     private javax.swing.JButton btSalir;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
@@ -581,14 +600,10 @@ public class PantallaPrincipal extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane2;
     private org.jdesktop.swingx.JXPanel jXPanel1;
     private org.jdesktop.swingx.JXPanel jXPanel2;
     private org.jdesktop.swingx.JXPanel jXPanel3;
-    private org.jdesktop.swingx.JXPanel jXPanel4;
-    private org.jdesktop.swingx.JXPanel jXPanel5;
     private org.jdesktop.swingx.JXPanel jXPanel6;
     private org.jdesktop.swingx.JXTable jXTResultado;
     private javax.swing.JPanel jpParametros;
@@ -599,8 +614,6 @@ public class PantallaPrincipal extends javax.swing.JDialog {
     private javax.swing.JLabel lbVolumen;
     private javax.swing.JTextField tfBeneficioInferior;
     private javax.swing.JTextField tfBeneficioObCHormigas;
-    private javax.swing.JTextField tfBeneficioObCHormigas1;
-    private javax.swing.JTextField tfBeneficioObCHormigas2;
     private javax.swing.JTextField tfBeneficioObFBruta;
     private javax.swing.JTextField tfBeneficioObUsuario;
     private javax.swing.JTextField tfBeneficioSuperior;
@@ -608,8 +621,6 @@ public class PantallaPrincipal extends javax.swing.JDialog {
     private javax.swing.JTextField tfCapacidad;
     private javax.swing.JTextField tfVolumenInferior;
     private javax.swing.JTextField tfVolumenOcupadoCHormigas;
-    private javax.swing.JTextField tfVolumenOcupadoCHormigas1;
-    private javax.swing.JTextField tfVolumenOcupadoCHormigas2;
     private javax.swing.JTextField tfVolumenOcupadoFBruta;
     private javax.swing.JTextField tfVolumenOcupadoUsuario;
     private javax.swing.JTextField tfVolumenSuperior;
@@ -693,5 +704,15 @@ public class PantallaPrincipal extends javax.swing.JDialog {
         }
 
         return resul;
+    }
+
+    private void calcularEntradasUsuario(Mochila mochi){
+        
+        if(!mochi.isVolumenOcupadoUsuarioCorrecto()){
+            JOptionPane.showMessageDialog(this, "Los objetos elegidos superan la capacidad de la mochila");
+        }
+
+        tfBeneficioObUsuario.setText(String.valueOf(mochi.getBeneficioObtenidoUsuario()));
+        tfVolumenOcupadoUsuario.setText(String.valueOf(mochi.getVolumenOcupadoUsuario()));
     }
 }
