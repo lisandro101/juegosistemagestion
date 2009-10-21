@@ -20,7 +20,7 @@ public class MochilaTableModel extends AbstractTableModel {
     private static final String[] NOMBRE_COLUMNAS = {"Objeto", "Beneficio", "Volumen","F.Bruta", "C.Hormiga","Usuario"};
     private static final boolean[] COLUMNAS_EDITABLES = {false, false, false, false, false, true};
     private static final Class[] CLASE_COLUMNAS =
-        {String.class, double.class, double.class, boolean.class, boolean.class, Boolean.class};
+        {String.class, double.class, double.class, String.class, String.class, Boolean.class};
     
     private List<Objeto> objetos;
 
@@ -108,19 +108,41 @@ public class MochilaTableModel extends AbstractTableModel {
             case 2:
                 resultado = objetos.get(fila).getVolumen();
                 break;
-            case 3:              
-                resultado = objetos.get(fila).isDisponibleFuerzaBruta();
+            case 3:
+
+                if(objetos.get(fila).isDisponibleFuerzaBruta()){
+                    resultado = "Si";
+                }else{
+                    resultado = "No";
+                }
+                //resultado = objetos.get(fila).isDisponibleFuerzaBruta();
                 break;
             case 4:
-                resultado = objetos.get(fila).isDisponibleHormiga();
+
+                if(objetos.get(fila).isDisponibleHormiga()){
+                    resultado = "Si";
+                }else{
+                    resultado = "No";
+                }
+                //resultado = objetos.get(fila).isDisponibleHormiga();
                 break;
             case 5:
-                resultado = objetos.get(fila).isDisponible();
+                resultado = objetos.get(fila).isDisponibleUsuario();
                 break;
         }
         return resultado;
     }
+
+    @Override
+    public void setValueAt(Object valor, int fila, int columna) {
+
+        if(columna == 5) {
+            objetos.get(fila).setDisponibleUsuario((Boolean)valor);
+        }
+    }
+
     
+
     /**
      * Agrega Proveedor al modelo
      * 
