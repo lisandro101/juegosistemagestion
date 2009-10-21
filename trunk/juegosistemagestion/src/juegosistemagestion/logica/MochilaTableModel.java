@@ -17,10 +17,10 @@ import juegosistemagestion.entidades.Objeto;
 
 public class MochilaTableModel extends AbstractTableModel {
     private static final long serialVersionUID = 1L;
-    private static final String[] NOMBRE_COLUMNAS = {"Objeto", "Beneficio", "Volumen","En Mochila"};
-    private static final boolean[] COLUMNAS_EDITABLES = {false, false, false, false};
+    private static final String[] NOMBRE_COLUMNAS = {"Objeto", "Beneficio", "Volumen","F.Bruta", "C.Hormiga","Usuario"};
+    private static final boolean[] COLUMNAS_EDITABLES = {false, false, false, false, false, true};
     private static final Class[] CLASE_COLUMNAS =
-        {String.class, double.class, double.class, Boolean.class};
+        {String.class, double.class, double.class, boolean.class, boolean.class, Boolean.class};
     
     private List<Objeto> objetos;
 
@@ -108,7 +108,13 @@ public class MochilaTableModel extends AbstractTableModel {
             case 2:
                 resultado = objetos.get(fila).getVolumen();
                 break;
-            case 3:
+            case 3:              
+                resultado = objetos.get(fila).isDisponibleFuerzaBruta();
+                break;
+            case 4:
+                resultado = objetos.get(fila).isDisponibleHormiga();
+                break;
+            case 5:
                 resultado = objetos.get(fila).isDisponible();
                 break;
         }
@@ -173,5 +179,5 @@ public class MochilaTableModel extends AbstractTableModel {
         
         fireTableRowsDeleted(0, tamanio);
     }
-
+    
 }

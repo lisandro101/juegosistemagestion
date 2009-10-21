@@ -122,8 +122,8 @@ public class Error {
     {
         //MEx: Mochila SolucionExacta:Es la mochila Problema, cuando se le aplica la Solucion Fuerza Bruta.
         //MHeu:Mochila SolucionHeuristica:Conj de Soluciones(cant de Colonias)Heuristica.
-        double MEx=SolucionExacta.getBeneficioObtenido();
-        double MHeu= SolucionHeuristica.getBeneficioObtenido();
+        double MEx=SolucionExacta.getBeneficioObtenidoUsuario();
+        double MHeu= SolucionHeuristica.getBeneficioObtenidoUsuario();
         errorAbsoluto=Math.abs(MEx-MHeu);
          System.out.println("__El Error Absoluto es:__");
          System.out.println(errorAbsoluto);
@@ -138,9 +138,9 @@ public class Error {
        //ARIEL, ESTOY AHY QUE COORDINARLO, VOS Y YO.
        //Busco ahora, si el valor actual de la solucion es Menor a la Guardada
          errorRelativoMenor=SolucionHeuristica.getBeneficioMenor();
-       if(SolucionHeuristica.getBeneficioObtenido()<SolucionHeuristica.getBeneficioMenor())
+       if(SolucionHeuristica.getBeneficioObtenidoUsuario()<SolucionHeuristica.getBeneficioMenor())
        {
-       errorRelativoMenor=SolucionHeuristica.getBeneficioObtenido();    
+       errorRelativoMenor=SolucionHeuristica.getBeneficioObtenidoUsuario();
        SolucionHeuristica.setBeneficioMenor(errorRelativoMenor);
        }
        double MEx=SolucionExacta.getBeneficioMenor();
@@ -159,9 +159,9 @@ public class Error {
        //ARIEL, ESTOY AHY QUE COORDINARLO, VOS Y YO.
 
           errorRelativoMayor=SolucionHeuristica.getBeneficioMayor();
-       if(SolucionHeuristica.getBeneficioObtenido()>SolucionHeuristica.getBeneficioMayor())
+       if(SolucionHeuristica.getBeneficioObtenidoUsuario()>SolucionHeuristica.getBeneficioMayor())
        {
-       errorRelativoMayor=SolucionHeuristica.getBeneficioObtenido();
+       errorRelativoMayor=SolucionHeuristica.getBeneficioObtenidoUsuario();
        SolucionHeuristica.setBeneficioMayor(errorRelativoMayor);
        }
        double MEx=SolucionExacta.getBeneficioMayor();
@@ -190,7 +190,7 @@ public class Error {
        double ERP = this.ErrorRelativoPromedio(SolucionHeuristica);
        double M= SolucionHeuristica.getCapacidad();
        
-       Sumatoria= (Math.pow(SolucionHeuristica.getBeneficioObtenido()-ERP,2))+ Sumatoria;
+       Sumatoria= (Math.pow(SolucionHeuristica.getBeneficioObtenidoUsuario()-ERP,2))+ Sumatoria;
        s=((1/M-1)*Sumatoria);
        System.out.println("__El Valor de S es :__");
        System.out.println(s);

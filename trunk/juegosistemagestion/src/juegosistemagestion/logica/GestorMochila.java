@@ -112,7 +112,7 @@ public class GestorMochila {
                 for (int z = 0; z < mochila.getObjetos().size(); z++) {
 
 
-                    if (((mochila2.getVolumenOcupado() <= capacidad))) {
+                    if (((mochila2.getVolumenOcupadoUsuario() <= capacidad))) {
 
                         double numAleatorio = Math.random();
                         colonias.get(j).getListaHormigas().get(k).setNroAleatorio(numAleatorio);
@@ -145,7 +145,7 @@ public class GestorMochila {
 
                                 //System.out.println("valida if de probabilidad");
 
-                                if ((mochilaPorHormiga.getVolumenOcupado() + mochila2.getObjetos().get(i).getVolumen()) <= capacidad) {
+                                if ((mochilaPorHormiga.getVolumenOcupadoUsuario() + mochila2.getObjetos().get(i).getVolumen()) <= capacidad) {
                                     mochila2.getObjetos().get(i).setDisponible(true);
                                     Objeto obj = new Objeto();
                                     obj = mochila2.getObjetos().get(i);
@@ -223,7 +223,7 @@ public class GestorMochila {
 
 
 //============================================================================================================================================
-    public void calcularPorFuerzaBruta(Mochila mochila) {
+    public Mochila calcularPorFuerzaBruta(Mochila mochila) {
         int cantidadObjetos = mochila.getObjetos().size();
         Objeto objeto;
         //Mejor Mochila
@@ -250,7 +250,7 @@ public class GestorMochila {
                 for (int j = (i + 1); j < cantidadObjetos;) {
                     objeto = mochila.getObjetos().get(j);
                     if (mochilaA.isVolumenOcupadoCorrecto() && !mochilaA.estaEnLaMochila(objeto)) {
-                        if ((mochilaA.getVolumenOcupado() +
+                        if ((mochilaA.getVolumenOcupadoUsuario() +
                                 mochila.getObjetos().get(j).getVolumen()) <= capacidad) {
 
                             objeto.setDisponible(true);
@@ -259,7 +259,7 @@ public class GestorMochila {
                     }
                     j += paso;
                 }
-                if (mochilaA.getBeneficioObtenido() > mejorMochila.getBeneficioObtenido()) {
+                if (mochilaA.getBeneficioObtenidoUsuario() > mejorMochila.getBeneficioObtenidoUsuario()) {
                     mejorMochila = mochilaA.clonarMochila();
                 }
                 if (!(i == cantidadObjetos - 1)) {
@@ -272,11 +272,163 @@ public class GestorMochila {
         }
 
         // Borrar lineas siguientes
-        mejorMochila.mostrarObjetosMochilaDisponibles();
+        //mejorMochila.mostrarObjetosMochilaDisponibles();
+
+        return mejorMochila;
 
     }
 
-    private double redondear(double valor) {
+     public Mochila calcularPorFuerzaBrutaBinaria(Mochila mochila) {
+         Mochila mochilaNueva = mochila.clonarMochila();       
+         Mochila mejorMochila = mochila.clonarMochila();
+
+         int cantObjetos = mochila.getCantidadDeObjetos();
+
+         mejorMochila.noDisponibleTodosLosObjetos();
+         mochilaNueva.noDisponibleTodosLosObjetos();
+
+         //fuerza bruta probando con un solo elemento a la vez
+         for (int j = 0; j < cantObjetos; j++) {
+
+             mochilaNueva.getObjetos().get(j).setDisponible(true);
+             validarAsignarMejorMchila(mochilaNueva, mejorMochila);
+             mochilaNueva.getObjetos().get(j).setDisponible(false);
+
+         }
+
+         mochilaNueva.noDisponibleTodosLosObjetos();
+         //fuerza bruta probando con las combinaciones de dos elementos
+         for (int i = 0; i < cantObjetos; i++) {
+             mochilaNueva.getObjetos().get(i).setDisponible(true);
+
+             for (int j = i + 1; j < cantObjetos; j++) {
+
+                 mochilaNueva.getObjetos().get(j).setDisponible(true);
+
+                 validarAsignarMejorMchila(mochilaNueva, mejorMochila);
+
+                 mochilaNueva.getObjetos().get(j).setDisponible(false);
+
+             }
+
+             mochilaNueva.noDisponibleTodosLosObjetos();
+
+         }
+
+
+         mochilaNueva.noDisponibleTodosLosObjetos();
+         //fuerza bruta probando con las combinaciones de tres elementos
+         for (int k = 0; k < cantObjetos; k++) {
+             mochilaNueva.getObjetos().get(k).setDisponible(true);
+             for (int i = k+1; i < cantObjetos; i++) {
+                 mochilaNueva.getObjetos().get(i).setDisponible(true);
+
+                 for (int j = i+1; j < cantObjetos; j++) {
+
+                     mochilaNueva.getObjetos().get(j).setDisponible(true);
+
+                     validarAsignarMejorMchila(mochilaNueva, mejorMochila);
+
+                     mochilaNueva.getObjetos().get(j).setDisponible(false);
+
+                 }
+                 mochilaNueva.getObjetos().get(i).setDisponible(false);
+             }
+             mochilaNueva.noDisponibleTodosLosObjetos();
+         }
+
+
+         mochilaNueva.noDisponibleTodosLosObjetos();
+         //fuerza bruta probando con las combinaciones de cuatro elementos
+
+         for (int m = 0; m < cantObjetos; m++) {
+             mochilaNueva.getObjetos().get(m).setDisponible(true);
+
+             for (int k = m + 1; k < cantObjetos; k++) {
+                 mochilaNueva.getObjetos().get(k).setDisponible(true);
+                 for (int i = k + 1; i < cantObjetos; i++) {
+                     mochilaNueva.getObjetos().get(i).setDisponible(true);
+
+                     for (int j = i + 1; j < cantObjetos; j++) {
+
+                         mochilaNueva.getObjetos().get(j).setDisponible(true);
+
+                         validarAsignarMejorMchila(mochilaNueva, mejorMochila);
+
+                         mochilaNueva.getObjetos().get(j).setDisponible(false);
+
+                     }
+                     mochilaNueva.getObjetos().get(i).setDisponible(false);
+                 }
+                 mochilaNueva.getObjetos().get(k).setDisponible(false);
+             }
+             mochilaNueva.noDisponibleTodosLosObjetos();
+         }
+
+
+         for (int i = 0; i < cantObjetos; i++) {
+             if(mejorMochila.getObjetos().get(i).isDisponible()){
+                mejorMochila.getObjetos().get(i).setDisponible(false);
+                mejorMochila.getObjetos().get(i).setDisponibleFuerzaBruta(true);
+             }
+         }
+
+
+
+
+//         for (int i = 0; i < cantObjetos; i++) {
+//
+//             for (int k = 0; k <= i; k++) {
+//                 mochilaNueva.getObjetos().get(k).setDisponible(true);
+//
+//             }
+//             validarAsignarMejorMchila(mochilaNueva, mejorMochila);
+//
+//             for (int j = i+1; j < cantObjetos; j++) {
+//
+//                 mochilaNueva.getObjetos().get(j).setDisponible(true);
+//
+//
+//
+//                 validarAsignarMejorMchila(mochilaNueva, mejorMochila);
+//
+//                 mochilaNueva.getObjetos().get(j).setDisponible(false);
+//
+//             }
+//
+//             mochilaNueva.noDisponibleTodosLosObjetos();
+//
+//         }
+
+        
+         return mejorMochila;
+     }
+
+    private void validarAsignarMejorMchila(Mochila mochilaNueva, Mochila mejorMochila) {
+        if (mochilaNueva.isVolumenOcupadoCorrecto() &&
+                mochilaNueva.getBeneficioObtenidoUsuario() > mejorMochila.getBeneficioObtenidoUsuario()) {
+
+            copiarElementosDisponibles(mochilaNueva, mejorMochila);
+        }
+
+    }
+
+     private void copiarElementosDisponibles(Mochila mochilaOrigen, Mochila mochilaDestino){
+         for (int i = 0; i < mochilaOrigen.getCantidadDeObjetos(); i++) {
+            if(mochilaOrigen.getObjetos().get(i).isDisponible()){
+                mochilaDestino.getObjetos().get(i).setDisponible(true);
+            }else{
+                mochilaDestino.getObjetos().get(i).setDisponible(false);
+            }
+         }
+     }
+
+
+
+
+
+
+    public double redondear(double valor) {
         return (Math.floor(valor * 100) / 100);
     }
 
@@ -286,7 +438,7 @@ public class GestorMochila {
      * @return
      */
     public Mochila inicializarMochila(Mochila mochila) {
-        double ocupado = mochila.getVolumenOcupado(); //calcularVolumen(mochila);
+        double ocupado = mochila.getVolumenOcupadoUsuario(); //calcularVolumen(mochila);
         for (Objeto objeto : mochila.getObjetos()) {
             if ((ocupado) + objeto.getVolumen() <= mochila.getCapacidad()) {
                 objeto.setDisponible(true);
@@ -304,7 +456,7 @@ public class GestorMochila {
      */
     public List<Objeto> inicializarSubMochila(Mochila mochila) {
         List<Objeto> objetos = new ArrayList<Objeto>();
-        double ocupado = mochila.getVolumenOcupado();//calcularVolumen(mochila);
+        double ocupado = mochila.getVolumenOcupadoUsuario();//calcularVolumen(mochila);
         for (Objeto objeto : mochila.getObjetos()) {
             if ((ocupado) + objeto.getVolumen() <= mochila.getCapacidad()) {
                 objeto.setDisponible(true);

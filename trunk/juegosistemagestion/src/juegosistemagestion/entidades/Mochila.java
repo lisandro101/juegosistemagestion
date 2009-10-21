@@ -7,6 +7,7 @@ package juegosistemagestion.entidades;
 
 import java.util.ArrayList;
 import java.util.List;
+import juegosistemagestion.logica.GestorMochila;
 
 /**
  *
@@ -107,25 +108,66 @@ public class Mochila {
         return resul;
     }
 
-    public double getBeneficioObtenido(){
+    public double getBeneficioObtenidoUsuario(){
         double total= 0.0;
         for (Objeto objeto : this.getObjetos()) {
             if(objeto.isDisponible()){
                 total+= objeto.getBeneficio();
             }
         }
-        return total;
+        return GestorMochila.getInstancia().redondear(total);
     }
 
-    public double getVolumenOcupado(){
+    public double getVolumenOcupadoUsuario(){
         double total= 0.0;
         for (Objeto objeto : this.getObjetos()) {
             if(objeto.isDisponible()){
                 total+= objeto.getVolumen();
             }
         }
-        return total;
+        return GestorMochila.getInstancia().redondear(total);
     }
+        public double getBeneficioObtenidoFBruta(){
+        double total= 0.0;
+        for (Objeto objeto : this.getObjetos()) {
+            if(objeto.isDisponibleFuerzaBruta()){
+                total+= objeto.getBeneficio();
+            }
+        }
+        return GestorMochila.getInstancia().redondear(total);
+    }
+
+    public double getVolumenOcupadoFBruta(){
+        double total= 0.0;
+        for (Objeto objeto : this.getObjetos()) {
+            if(objeto.isDisponibleFuerzaBruta()){
+                total+= objeto.getVolumen();
+            }
+        }
+        return GestorMochila.getInstancia().redondear(total);
+    }
+
+        public double getBeneficioObtenidoCHormiga(){
+        double total= 0.0;
+        for (Objeto objeto : this.getObjetos()) {
+            if(objeto.isDisponibleHormiga()){
+                total+= objeto.getBeneficio();
+            }
+        }
+        return GestorMochila.getInstancia().redondear(total);
+    }
+
+    public double getVolumenOcupadoCHormiga(){
+        double total= 0.0;
+        for (Objeto objeto : this.getObjetos()) {
+            if(objeto.isDisponibleHormiga()){
+                total+= objeto.getVolumen();
+            }
+        }
+        return GestorMochila.getInstancia().redondear(total);
+    }
+
+
 
     public void vaciarMochila(){
         for (int i = 0; i < this.getObjetos().size(); i++) {
@@ -154,8 +196,8 @@ public class Mochila {
         }
         System.out.println("\n----------------------------------------");
         System.out.println("----------------------------------------");
-        System.out.println("Beneficio Total: "+ this.getBeneficioObtenido());
-        System.out.println("Volumen: "+ this.getVolumenOcupado());
+        System.out.println("Beneficio Total: "+ this.getBeneficioObtenidoUsuario());
+        System.out.println("Volumen: "+ this.getVolumenOcupadoUsuario());
         System.out.println("----------------------------------------");
     }
 
@@ -165,5 +207,9 @@ public class Mochila {
         }else{
             return false;
         }
+    }
+
+    public int getCantidadDeObjetos(){
+        return this.getObjetos().size();
     }
 }

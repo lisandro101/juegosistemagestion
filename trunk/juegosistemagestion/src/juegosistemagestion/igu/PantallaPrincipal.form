@@ -26,9 +26,9 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="jpResultados" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jxPArchivos" alignment="0" pref="659" max="32767" attributes="0"/>
+                  <Component id="jxPArchivos" alignment="0" pref="736" max="32767" attributes="0"/>
                   <Component id="jpParametros" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jpResultados" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -92,7 +92,7 @@
                       </Group>
                       <Component id="lbVolumen" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="352" max="32767" attributes="0"/>
+                  <EmptySpace pref="429" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -122,7 +122,7 @@
                       <Component id="tfVolumenInferior" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tfVolumenSuperior" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="14" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -208,13 +208,15 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jScrollPane2" alignment="0" pref="623" max="32767" attributes="0"/>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="jXPanel2" max="32767" attributes="0"/>
+                      <Component id="jScrollPane2" alignment="0" pref="700" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jXPanel2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jXPanel3" max="32767" attributes="0"/>
+                          <Component id="jXPanel3" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jXPanel6" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="jXPanel1" alignment="1" pref="623" max="32767" attributes="0"/>
+                      <Component id="jXPanel1" alignment="1" pref="700" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -226,11 +228,13 @@
                   <Component id="jScrollPane2" pref="144" max="32767" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jXPanel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jXPanel2" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jXPanel3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jXPanel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jXPanel6" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -246,12 +250,52 @@
             <Component class="org.jdesktop.swingx.JXTable" name="jXTResultado">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="4" rowCount="5">
+                  <Table columnCount="6" rowCount="4">
                     <Column editable="false" title="Objeto" type="java.lang.Object"/>
                     <Column editable="false" title="Beneficio" type="java.lang.Double"/>
                     <Column editable="false" title="Volumen" type="java.lang.Double"/>
-                    <Column editable="false" title="En Mochila" type="java.lang.Boolean"/>
+                    <Column editable="false" title="F.Bruta" type="java.lang.String"/>
+                    <Column editable="false" title="C.Hormiga" type="java.lang.String"/>
+                    <Column editable="true" title="Usuario" type="java.lang.Boolean"/>
                   </Table>
+                </Property>
+                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                  <TableColumnModel selectionModel="1">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                  </TableColumnModel>
+                </Property>
+                <Property name="columnSelectionAllowed" type="boolean" value="true"/>
+                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                  <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
             </Component>
@@ -276,11 +320,11 @@
                           <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="tfVolumenOcupadoFBruta" alignment="1" pref="86" max="32767" attributes="1"/>
-                          <Component id="tfBeneficioObFBruta" alignment="1" pref="86" max="32767" attributes="1"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="tfVolumenOcupadoFBruta" max="32767" attributes="1"/>
+                          <Component id="tfBeneficioObFBruta" alignment="0" pref="60" max="32767" attributes="1"/>
                       </Group>
-                      <EmptySpace pref="63" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -297,7 +341,7 @@
                           <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="tfBeneficioObFBruta" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="13" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -349,11 +393,11 @@
                           <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="tfVolumenOcupadoCHormigas" alignment="1" pref="80" max="32767" attributes="1"/>
-                          <Component id="tfBeneficioObCHormigas" alignment="1" pref="80" max="32767" attributes="1"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="tfBeneficioObCHormigas" max="32767" attributes="1"/>
+                          <Component id="tfVolumenOcupadoCHormigas" alignment="0" pref="56" max="32767" attributes="1"/>
                       </Group>
-                      <EmptySpace pref="68" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -370,7 +414,7 @@
                           <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="tfBeneficioObCHormigas" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="13" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -414,18 +458,88 @@
             </Component>
           </SubComponents>
         </Container>
+        <Container class="org.jdesktop.swingx.JXPanel" name="jXPanel6">
+          <Properties>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                <TitledBorder title="Usuario"/>
+              </Border>
+            </Property>
+          </Properties>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="tfBeneficioObUsuario" alignment="0" max="32767" attributes="1"/>
+                          <Component id="tfVolumenOcupadoUsuario" alignment="0" pref="56" max="32767" attributes="1"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tfVolumenOcupadoUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tfBeneficioObUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JTextField" name="tfVolumenOcupadoUsuario">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="text" type="java.lang.String" value="0.0"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel12">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Volumen Ocupado:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel13">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Beneficio Obtenido:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="tfBeneficioObUsuario">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="text" type="java.lang.String" value="0.0"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
       </SubComponents>
     </Container>
     <Container class="org.jdesktop.swingx.JXPanel" name="jxPArchivos">
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="btCalcular">
+        <Component class="javax.swing.JButton" name="btCalcularFBruta">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Calcular"/>
+            <Property name="text" type="java.lang.String" value="Calcular F.Bruta"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btCalcularActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btCalcularFBrutaActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btError">
