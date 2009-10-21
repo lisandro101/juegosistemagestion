@@ -23,6 +23,7 @@ public class Error {
     /**
      * @return the errorAbsoluto
      */
+    public Error(){};
     public double getErrorAbsoluto() {
         return errorAbsoluto;
     }

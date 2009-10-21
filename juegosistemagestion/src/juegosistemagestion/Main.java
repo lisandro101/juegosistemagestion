@@ -7,6 +7,8 @@ package juegosistemagestion;
 
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import juegosistemagestion.entidades.Mochila;
+import juegosistemagestion.entidades.Error;
 import juegosistemagestion.igu.PantallaPrincipal;
 
 /**
@@ -26,6 +28,10 @@ public class Main {
         p.setLocationRelativeTo(null);
         p.setVisible(true);
         p.setModal(true);
+        
+       
+
+      
     }
 
 }
