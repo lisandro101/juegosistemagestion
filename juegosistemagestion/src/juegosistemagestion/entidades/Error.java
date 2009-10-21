@@ -18,6 +18,7 @@ public class Error {
     private double errorRelativoPromedio;
     private double s;
     private double intervaloDeConfianza;
+    private double Sumatoria=0;
 
     /**
      * @return the errorAbsoluto
@@ -156,15 +157,15 @@ public class Error {
        //buscar la colonia que obtubo el MAYOR benefico.
        //ARIEL, ESTOY AHY QUE COORDINARLO, VOS Y YO.
 
-          errorRelativoMayor=SolucionHeuristica.getBeneficioMenor();
+          errorRelativoMayor=SolucionHeuristica.getBeneficioMayor();
        if(SolucionHeuristica.getBeneficioObtenido()>SolucionHeuristica.getBeneficioMayor())
        {
        errorRelativoMayor=SolucionHeuristica.getBeneficioObtenido();
-       SolucionHeuristica.setBeneficioMenor(errorRelativoMayor);
+       SolucionHeuristica.setBeneficioMayor(errorRelativoMayor);
        }
        double MEx=SolucionExacta.getBeneficioMayor();
        double MHeuMay= SolucionHeuristica.getBeneficioMayor();
-       errorRelativoMenor=MEx-MHeuMay;
+       errorRelativoMayor=MEx-MHeuMay;
        System.out.println("__El Error Relativo Mayor es:__");
        System.out.println(errorRelativoMayor);
        System.out.println("________\n");
@@ -182,12 +183,12 @@ public class Error {
          System.out.println("________\n");
          return errorRelativoPromedio;
     }
-      public double S(double errorRelativoPromedio , Mochila SolucionHeuristica)
+      public double S( Mochila SolucionHeuristica)
     {
 
-       double ERP = errorRelativoPromedio;
+       double ERP = this.ErrorRelativoPromedio(SolucionHeuristica);
        double M= SolucionHeuristica.getCapacidad();
-       double Sumatoria=0;
+       
        Sumatoria= (Math.pow(SolucionHeuristica.getBeneficioObtenido()-ERP,2))+ Sumatoria;
        s=((1/M-1)*Sumatoria);
        System.out.println("__El Valor de S es :__");
