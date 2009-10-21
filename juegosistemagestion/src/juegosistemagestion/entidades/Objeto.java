@@ -71,14 +71,14 @@ public class Objeto {
     /**
      * @return the disponible
      */
-    public boolean isDisponible() {
+    public boolean isDisponibleUsuario() {
         return disponibleUsuario;
     }
 
     /**
      * @param disponible the disponible to set
      */
-    public void setDisponible(boolean disponible) {
+    public void setDisponibleUsuario(boolean disponible) {
         this.disponibleUsuario = disponible;
     }
 

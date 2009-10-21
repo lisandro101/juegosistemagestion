@@ -83,7 +83,7 @@ public class Mochila {
         for (Objeto objeto : this.getObjetos()) {
             objetoNuevo = new Objeto();
             objetoNuevo.setBeneficio(objeto.getBeneficio());
-            objetoNuevo.setDisponible(objeto.isDisponible());
+            objetoNuevo.setDisponibleUsuario(objeto.isDisponibleUsuario());
             objetoNuevo.setVolumen(objeto.getVolumen());
             objetoNuevo.setNombre(objeto.getNombre());
             objetosNuevos.add(objetoNuevo);
@@ -92,11 +92,11 @@ public class Mochila {
         return mochilaNueva;
     }
 
-    public boolean isVolumenOcupadoCorrecto(){
+    public boolean isVolumenOcupadFBrutaoCorrecto(){
         boolean resul;
         double total= 0.0;
         for (Objeto objeto : this.getObjetos()) {
-            if(objeto.isDisponible()){
+            if(objeto.isDisponibleFuerzaBruta()){
                 total+= objeto.getVolumen();
             }
         }
@@ -108,10 +108,46 @@ public class Mochila {
         return resul;
     }
 
+    public boolean isVolumenOcupadoUsuarioCorrecto(){
+        boolean resul;
+        double total= 0.0;
+        for (Objeto objeto : this.getObjetos()) {
+            if(objeto.isDisponibleUsuario()){
+                total+= objeto.getVolumen();
+            }
+        }
+        if(total<= this.getCapacidad()){
+            resul = true;
+        }else{
+            resul= false;
+        }
+        return resul;
+    }
+
+    public boolean isVolumenOcupadoCHormigaCorrecto(){
+        boolean resul;
+        double total= 0.0;
+        for (Objeto objeto : this.getObjetos()) {
+            if(objeto.isDisponibleHormiga()){
+                total+= objeto.getVolumen();
+            }
+        }
+        if(total<= this.getCapacidad()){
+            resul = true;
+        }else{
+            resul= false;
+        }
+        return resul;
+    }
+
+
+
+
+
     public double getBeneficioObtenidoUsuario(){
         double total= 0.0;
         for (Objeto objeto : this.getObjetos()) {
-            if(objeto.isDisponible()){
+            if(objeto.isDisponibleUsuario()){
                 total+= objeto.getBeneficio();
             }
         }
@@ -121,7 +157,7 @@ public class Mochila {
     public double getVolumenOcupadoUsuario(){
         double total= 0.0;
         for (Objeto objeto : this.getObjetos()) {
-            if(objeto.isDisponible()){
+            if(objeto.isDisponibleUsuario()){
                 total+= objeto.getVolumen();
             }
         }
@@ -175,9 +211,21 @@ public class Mochila {
         }
     }
 
-    public void noDisponibleTodosLosObjetos(){
+    public void noDisponibleTodosLosObjetosFBruta(){
         for (Objeto objeto : objetos) {
-            objeto.setDisponible(false);
+            objeto.setDisponibleFuerzaBruta(false);
+        }
+    }
+
+    public void noDisponibleTodosLosObjetosCHormiga(){
+        for (Objeto objeto : objetos) {
+            objeto.setDisponibleHormiga(false);
+        }
+    }
+
+    public void noDisponibleTodosLosObjetosUsuario(){
+        for (Objeto objeto : objetos) {
+            objeto.setDisponibleUsuario(false);
         }
     }
 
@@ -187,7 +235,7 @@ public class Mochila {
         System.out.println("-----------Objetos Disponibles----------");
         System.out.println("----------------------------------------");
         for (Objeto objeto : objetos) {
-            if(objeto.isDisponible()){
+            if(objeto.isDisponibleUsuario()){
                 System.out.println("----------------------------------------");
                 System.out.println("Nombre: "+objeto.getNombre());
                 System.out.println("Beneficio: "+objeto.getBeneficio());
