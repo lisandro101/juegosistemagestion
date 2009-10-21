@@ -14,7 +14,10 @@ public class Objeto {
     private String nombre;
     private double beneficio;
     private double volumen;
-    private boolean disponible;//es parte de la soluciòn
+    private boolean disponibleUsuario;//es parte de la soluciòn
+    private boolean disponibleFuerzaBruta;
+    private boolean disponibleHormiga;
+
     private double feromonaAcumulada = 0.05;
     private double rastroFeromona;
     private double probabilidad;
@@ -69,14 +72,14 @@ public class Objeto {
      * @return the disponible
      */
     public boolean isDisponible() {
-        return disponible;
+        return disponibleUsuario;
     }
 
     /**
      * @param disponible the disponible to set
      */
     public void setDisponible(boolean disponible) {
-        this.disponible = disponible;
+        this.disponibleUsuario = disponible;
     }
 
     /**
@@ -147,6 +150,34 @@ public class Objeto {
      */
     public void setNumAleatorioMax(double numAleatorioMax) {
         this.numAleatorioMax = numAleatorioMax;
+    }
+
+    /**
+     * @return the disponibleFuerzaBruta
+     */
+    public boolean isDisponibleFuerzaBruta() {
+        return disponibleFuerzaBruta;
+    }
+
+    /**
+     * @param disponibleFuerzaBruta the disponibleFuerzaBruta to set
+     */
+    public void setDisponibleFuerzaBruta(boolean disponibleFuerzaBruta) {
+        this.disponibleFuerzaBruta = disponibleFuerzaBruta;
+    }
+
+    /**
+     * @return the disponibleHormiga
+     */
+    public boolean isDisponibleHormiga() {
+        return disponibleHormiga;
+    }
+
+    /**
+     * @param disponibleHormiga the disponibleHormiga to set
+     */
+    public void setDisponibleHormiga(boolean disponibleHormiga) {
+        this.disponibleHormiga = disponibleHormiga;
     }
     
 }

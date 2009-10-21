@@ -75,8 +75,13 @@ public class PantallaPrincipal extends javax.swing.JDialog {
         tfBeneficioObCHormigas = new javax.swing.JTextField();
         jXPanel1 = new org.jdesktop.swingx.JXPanel();
         btGenerarObjetos = new javax.swing.JButton();
+        jXPanel6 = new org.jdesktop.swingx.JXPanel();
+        tfVolumenOcupadoUsuario = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        tfBeneficioObUsuario = new javax.swing.JTextField();
         jxPArchivos = new org.jdesktop.swingx.JXPanel();
-        btCalcular = new javax.swing.JButton();
+        btCalcularFBruta = new javax.swing.JButton();
         btError = new javax.swing.JButton();
         btCargar = new javax.swing.JButton();
         btGuardar = new javax.swing.JButton();
@@ -145,7 +150,7 @@ public class PantallaPrincipal extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(tfBeneficioSuperior, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(lbVolumen))
-                .addContainerGap(326, Short.MAX_VALUE))
+                .addContainerGap(429, Short.MAX_VALUE))
         );
         jpParametrosLayout.setVerticalGroup(
             jpParametrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,28 +174,27 @@ public class PantallaPrincipal extends javax.swing.JDialog {
                     .addComponent(jLabel4)
                     .addComponent(tfVolumenInferior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfVolumenSuperior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jpResultados.setBorder(javax.swing.BorderFactory.createTitledBorder("Objetos"));
 
         jXTResultado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Objeto", "Beneficio", "Volumen", "En Mochila"
+                "Objeto", "Beneficio", "Volumen", "F.Bruta", "C.Hormiga", "Usuario"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Boolean.class
+                java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -201,7 +205,9 @@ public class PantallaPrincipal extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        jXTResultado.setColumnSelectionAllowed(true);
         jScrollPane2.setViewportView(jXTResultado);
+        jXTResultado.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         jXPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Fuerza Bruta"));
 
@@ -230,10 +236,10 @@ public class PantallaPrincipal extends javax.swing.JDialog {
                     .addComponent(jLabel2)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jXPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfVolumenOcupadoFBruta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
-                    .addComponent(tfBeneficioObFBruta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE))
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addGroup(jXPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(tfVolumenOcupadoFBruta)
+                    .addComponent(tfBeneficioObFBruta, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jXPanel2Layout.setVerticalGroup(
             jXPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -246,7 +252,7 @@ public class PantallaPrincipal extends javax.swing.JDialog {
                 .addGroup(jXPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(tfBeneficioObFBruta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jXPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Colonia de Homigas"));
@@ -271,10 +277,10 @@ public class PantallaPrincipal extends javax.swing.JDialog {
                     .addComponent(jLabel6)
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jXPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfVolumenOcupadoCHormigas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-                    .addComponent(tfBeneficioObCHormigas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE))
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addGroup(jXPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(tfBeneficioObCHormigas)
+                    .addComponent(tfVolumenOcupadoCHormigas, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jXPanel3Layout.setVerticalGroup(
             jXPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -287,7 +293,7 @@ public class PantallaPrincipal extends javax.swing.JDialog {
                 .addGroup(jXPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(tfBeneficioObCHormigas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         btGenerarObjetos.setText("Generar Objetos");
@@ -298,6 +304,47 @@ public class PantallaPrincipal extends javax.swing.JDialog {
         });
         jXPanel1.add(btGenerarObjetos);
 
+        jXPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Usuario"));
+
+        tfVolumenOcupadoUsuario.setEditable(false);
+        tfVolumenOcupadoUsuario.setText("0.0");
+
+        jLabel12.setText("Volumen Ocupado:");
+
+        jLabel13.setText("Beneficio Obtenido:");
+
+        tfBeneficioObUsuario.setEditable(false);
+        tfBeneficioObUsuario.setText("0.0");
+
+        javax.swing.GroupLayout jXPanel6Layout = new javax.swing.GroupLayout(jXPanel6);
+        jXPanel6.setLayout(jXPanel6Layout);
+        jXPanel6Layout.setHorizontalGroup(
+            jXPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jXPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jXPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel13))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jXPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(tfBeneficioObUsuario)
+                    .addComponent(tfVolumenOcupadoUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jXPanel6Layout.setVerticalGroup(
+            jXPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jXPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jXPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(tfVolumenOcupadoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(jXPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(tfBeneficioObUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jpResultadosLayout = new javax.swing.GroupLayout(jpResultados);
         jpResultados.setLayout(jpResultadosLayout);
         jpResultadosLayout.setHorizontalGroup(
@@ -305,33 +352,37 @@ public class PantallaPrincipal extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpResultadosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpResultadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 543, Short.MAX_VALUE)
-                    .addGroup(jpResultadosLayout.createSequentialGroup()
-                        .addComponent(jXPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpResultadosLayout.createSequentialGroup()
+                        .addComponent(jXPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jXPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jXPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 543, Short.MAX_VALUE))
+                        .addComponent(jXPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jXPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jXPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jpResultadosLayout.setVerticalGroup(
             jpResultadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpResultadosLayout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jXPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jpResultadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpResultadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jXPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jXPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jXPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jXPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
-        btCalcular.setText("Calcular");
-        btCalcular.addActionListener(new java.awt.event.ActionListener() {
+        btCalcularFBruta.setText("Calcular F.Bruta");
+        btCalcularFBruta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btCalcularActionPerformed(evt);
+                btCalcularFBrutaActionPerformed(evt);
             }
         });
-        jxPArchivos.add(btCalcular);
+        jxPArchivos.add(btCalcularFBruta);
 
         btError.setText("Error");
         btError.addActionListener(new java.awt.event.ActionListener() {
@@ -372,9 +423,9 @@ public class PantallaPrincipal extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jpResultados, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jxPArchivos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
-                    .addComponent(jpParametros, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jxPArchivos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 736, Short.MAX_VALUE)
+                    .addComponent(jpParametros, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jpResultados, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -391,7 +442,7 @@ public class PantallaPrincipal extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCalcularActionPerformed
+    private void btCalcularFBrutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCalcularFBrutaActionPerformed
 
 //        double capacidadMochila;
 //        Mochila mochila;
@@ -414,13 +465,28 @@ public class PantallaPrincipal extends javax.swing.JDialog {
 //            mochila.setCapacidad(capacidadMochila);
 //
 
-            //GestorMochila.getInstancia().inicializarMochila(mochila);
-            GestorMochila.getInstancia().calcularPorFuerzaBruta(mochilaGlobal);
+        if (mochilaGlobal != null) {
+
+            Mochila mochi=GestorMochila.getInstancia().calcularPorFuerzaBrutaBinaria(mochilaGlobal);
+            
+            tModel.limpiarTableModel();
+            tModel.agregarFilas(mochi.getObjetos());
+
+            tfVolumenOcupadoFBruta.setText(String.valueOf(mochi.getVolumenOcupadoFBruta()));
+            tfBeneficioObFBruta.setText(String.valueOf(mochi.getBeneficioObtenidoFBruta()));
+            System.out.println("volumen: "+mochi.getVolumenOcupadoFBruta());
+            System.out.println("Beneficio: "+mochi.getBeneficioObtenidoFBruta());
+        }
+           
+            //Mochila mochi = GestorMochila.getInstancia().calcularPorFuerzaBruta(mochilaGlobal);
+
+
+
             //GestorMochila.getInstancia().calcularPorHormiga(mochilaGlobal);
 
 //        }
 //        }
-}//GEN-LAST:event_btCalcularActionPerformed
+}//GEN-LAST:event_btCalcularFBrutaActionPerformed
 
     private void btSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalirActionPerformed
         salir();
@@ -498,23 +564,32 @@ public class PantallaPrincipal extends javax.swing.JDialog {
         }//GEN-LAST:event_tfCantObjetosActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btCalcular;
+    private javax.swing.JButton btCalcularFBruta;
     private javax.swing.JButton btCargar;
     private javax.swing.JButton btError;
     private javax.swing.JButton btGenerarObjetos;
     private javax.swing.JButton btGuardar;
     private javax.swing.JButton btSalir;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane2;
     private org.jdesktop.swingx.JXPanel jXPanel1;
     private org.jdesktop.swingx.JXPanel jXPanel2;
     private org.jdesktop.swingx.JXPanel jXPanel3;
+    private org.jdesktop.swingx.JXPanel jXPanel4;
+    private org.jdesktop.swingx.JXPanel jXPanel5;
+    private org.jdesktop.swingx.JXPanel jXPanel6;
     private org.jdesktop.swingx.JXTable jXTResultado;
     private javax.swing.JPanel jpParametros;
     private org.jdesktop.swingx.JXPanel jpResultados;
@@ -524,13 +599,19 @@ public class PantallaPrincipal extends javax.swing.JDialog {
     private javax.swing.JLabel lbVolumen;
     private javax.swing.JTextField tfBeneficioInferior;
     private javax.swing.JTextField tfBeneficioObCHormigas;
+    private javax.swing.JTextField tfBeneficioObCHormigas1;
+    private javax.swing.JTextField tfBeneficioObCHormigas2;
     private javax.swing.JTextField tfBeneficioObFBruta;
+    private javax.swing.JTextField tfBeneficioObUsuario;
     private javax.swing.JTextField tfBeneficioSuperior;
     private javax.swing.JTextField tfCantObjetos;
     private javax.swing.JTextField tfCapacidad;
     private javax.swing.JTextField tfVolumenInferior;
     private javax.swing.JTextField tfVolumenOcupadoCHormigas;
+    private javax.swing.JTextField tfVolumenOcupadoCHormigas1;
+    private javax.swing.JTextField tfVolumenOcupadoCHormigas2;
     private javax.swing.JTextField tfVolumenOcupadoFBruta;
+    private javax.swing.JTextField tfVolumenOcupadoUsuario;
     private javax.swing.JTextField tfVolumenSuperior;
     // End of variables declaration//GEN-END:variables
 
