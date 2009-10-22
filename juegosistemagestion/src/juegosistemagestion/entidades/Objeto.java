@@ -18,13 +18,13 @@ public class Objeto {
     private boolean disponibleFuerzaBruta;
     private boolean disponibleHormiga;
 
-    private double feromonaAcumulada = 0.05;
-    private double rastroFeromona;
+    private double feromonaAcumulada;
     private double probabilidad;
     private double probabilidadAcumulada;
     private double numAleatorioMin;
     private double numAleatorioMax;
-
+    private double inversaPeso = 1/volumen;
+    private double cocienteUtlidad;//  Ut/MAX Ut
 
     /**
      * @return the nombre
@@ -178,6 +178,27 @@ public class Objeto {
      */
     public void setDisponibleHormiga(boolean disponibleHormiga) {
         this.disponibleHormiga = disponibleHormiga;
+    }
+
+    /**
+     * @return the inversaPeso
+     */
+    public double getInversaPeso() {
+        return inversaPeso;
+    }
+
+    /**
+     * @return the cocienteUtlidad
+     */
+    public double getCocienteUtlidad() {
+        return cocienteUtlidad;
+    }
+
+    /**
+     * @param cocienteUtlidad the cocienteUtlidad to set
+     */
+    public void setCocienteUtlidad(double cocienteUtlidad) {
+        this.cocienteUtlidad = cocienteUtlidad;
     }
     
 }
