@@ -78,15 +78,16 @@ public class GestorMochila {
         Mochila mochila2 = mochila.clonarMochila();
 
         Mochila mejorMochilaPorHormiga = new Mochila();
-        List<Objeto> objetosMejorMochilaPorHormiga = new ArrayList<Objeto>();
-        mejorMochilaPorHormiga.setObjetos(objetosMejorMochilaPorHormiga);
+        //List<Objeto> objetosMejorMochilaPorHormiga = new ArrayList<Objeto>();
+        //mejorMochilaPorHormiga.setObjetos(objetosMejorMochilaPorHormiga);
+        mejorMochila.clonarMochila();
 
         int cantidadColonias = colonias.size();
         int cantidadHormigas = colonias.get(0).getCantidadHormigas();
         int cantidadObjetos = mochila.getCantidadDeObjetos();
         double capacidad = mochila.getCapacidad();
         double probabilidadAcumulada = 0;
-        double probabilidad =0;
+        double probabilidad = 0;
 
 
         for (Colonia colonia : colonias) {
@@ -104,10 +105,10 @@ public class GestorMochila {
                 double nroAleatorio = Math.random();
                 colonias.get(j).getListaHormigas().get(k).setNroAleatorio(nroAleatorio);
                 mejorMochilaPorHormiga.vaciarMochila();
+                mochila.noDisponibleTodosLosObjetosCHormiga();
                 mochila2.noDisponibleTodosLosObjetosCHormiga();
 
-                //for (int z = 0; z < cantidadObjetos; z++) {
-
+            
                 while (!(mochila.isVolumenOcupadoCHormigaCorrecto())) {
 
                     for (int i = 0; i < cantidadObjetos; i++) {
@@ -126,19 +127,15 @@ public class GestorMochila {
                             mochila.getObjetos().get(i).setDisponibleHormiga(true);
                         }
 
-
                     }//i
 
-                    probabilidad=0;
+                    probabilidad = 0;
                     probabilidadAcumulada = 0;
 
                 }//while
 
                 //valida la mejor mochila de la hormiga
-                if(mejorMochilaPorHormiga.getBeneficioObtenidoCHormiga() < mochila2.getBeneficioObtenidoCHormiga()){
-                mejorMochilaPorHormiga = mochila2;
-                }
-                // }//z
+                validarAsignarMejorMchilaCHormiga(mochila, mejorMochilaPorHormiga);
 
             }//k
 
@@ -412,6 +409,25 @@ public class GestorMochila {
                 mochilaDestino.getObjetos().get(i).setDisponibleFuerzaBruta(true);
             } else {
                 mochilaDestino.getObjetos().get(i).setDisponibleFuerzaBruta(false);
+            }
+        }
+    }
+
+    private void validarAsignarMejorMchilaCHormiga(Mochila mochilaNueva, Mochila mejorMochila) {
+        if (mochilaNueva.isVolumenOcupadoCHormigaCorrecto() &&
+                mochilaNueva.getBeneficioObtenidoCHormiga() > mejorMochila.getBeneficioObtenidoCHormiga()) {
+
+            copiarElementosDisponiblesCHormiga(mochilaNueva, mejorMochila);
+        }
+
+    }
+
+    private void copiarElementosDisponiblesCHormiga(Mochila mochilaOrigen, Mochila mochilaDestino) {
+        for (int i = 0; i < mochilaOrigen.getCantidadDeObjetos(); i++) {
+            if (mochilaOrigen.getObjetos().get(i).isDisponibleHormiga()) {
+                mochilaDestino.getObjetos().get(i).setDisponibleHormiga(true);
+            } else {
+                mochilaDestino.getObjetos().get(i).setDisponibleHormiga(false);
             }
         }
     }
