@@ -145,7 +145,6 @@ public class GestorMochila {
         }   //j
         return mejorMochila;
     }
-//===========================================================================================================================================
 
     public List<Hormiga> generarHormigas(int cantObj) {
         List<Hormiga> hormigas = new ArrayList<Hormiga>();
@@ -184,7 +183,6 @@ public class GestorMochila {
     ;
 
 
-//============================================================================================================================================
     public Mochila calcularPorFuerzaBruta(Mochila mochila) {
         int cantidadObjetos = mochila.getObjetos().size();
         Objeto objeto;
@@ -249,122 +247,155 @@ public class GestorMochila {
         mejorMochila.noDisponibleTodosLosObjetosFBruta();
         mochilaNueva.noDisponibleTodosLosObjetosFBruta();
 
-        //fuerza bruta probando con un solo elemento a la vez
-        for (int j = 0; j < cantObjetos; j++) {
-
-            mochilaNueva.getObjetos().get(j).setDisponibleFuerzaBruta(true);
-            validarAsignarMejorMchilaFBruta(mochilaNueva, mejorMochila);
-            mochilaNueva.getObjetos().get(j).setDisponibleFuerzaBruta(false);
-
-        }
-
-        mochilaNueva.noDisponibleTodosLosObjetosFBruta();
-        //fuerza bruta probando con las combinaciones de dos elementos
-        for (int i = 0; i < cantObjetos; i++) {
-            mochilaNueva.getObjetos().get(i).setDisponibleFuerzaBruta(true);
-
-            for (int j = i + 1; j < cantObjetos; j++) {
-
-                mochilaNueva.getObjetos().get(j).setDisponibleFuerzaBruta(true);
-
-                validarAsignarMejorMchilaFBruta(mochilaNueva, mejorMochila);
-
-                mochilaNueva.getObjetos().get(j).setDisponibleFuerzaBruta(false);
-
-            }
-
-            mochilaNueva.noDisponibleTodosLosObjetosFBruta();
-
-        }
-
-
-        mochilaNueva.noDisponibleTodosLosObjetosFBruta();
-        //fuerza bruta probando con las combinaciones de tres elementos
-        for (int k = 0; k < cantObjetos; k++) {
-            mochilaNueva.getObjetos().get(k).setDisponibleFuerzaBruta(true);
-            for (int i = k + 1; i < cantObjetos; i++) {
-                mochilaNueva.getObjetos().get(i).setDisponibleFuerzaBruta(true);
-
-                for (int j = i + 1; j < cantObjetos; j++) {
-
-                    mochilaNueva.getObjetos().get(j).setDisponibleFuerzaBruta(true);
-
-                    validarAsignarMejorMchilaFBruta(mochilaNueva, mejorMochila);
-
-                    mochilaNueva.getObjetos().get(j).setDisponibleFuerzaBruta(false);
-
-                }
-                mochilaNueva.getObjetos().get(i).setDisponibleFuerzaBruta(false);
-            }
-            mochilaNueva.noDisponibleTodosLosObjetosFBruta();
-        }
-
-
-        mochilaNueva.noDisponibleTodosLosObjetosFBruta();
-        //fuerza bruta probando con las combinaciones de cuatro elementos
-
-        for (int m = 0; m < cantObjetos; m++) {
-            mochilaNueva.getObjetos().get(m).setDisponibleFuerzaBruta(true);
-
-            for (int k = m + 1; k < cantObjetos; k++) {
-                mochilaNueva.getObjetos().get(k).setDisponibleFuerzaBruta(true);
-                for (int i = k + 1; i < cantObjetos; i++) {
-                    mochilaNueva.getObjetos().get(i).setDisponibleFuerzaBruta(true);
-
-                    for (int j = i + 1; j < cantObjetos; j++) {
-
-                        mochilaNueva.getObjetos().get(j).setDisponibleFuerzaBruta(true);
-
-                        validarAsignarMejorMchilaFBruta(mochilaNueva, mejorMochila);
-
-                        mochilaNueva.getObjetos().get(j).setDisponibleFuerzaBruta(false);
-
-                    }
-                    mochilaNueva.getObjetos().get(i).setDisponibleFuerzaBruta(false);
-                }
-                mochilaNueva.getObjetos().get(k).setDisponibleFuerzaBruta(false);
-            }
-            mochilaNueva.noDisponibleTodosLosObjetosFBruta();
-        }
-
-
-//         for (int i = 0; i < cantObjetos; i++) {
-//             if(mejorMochila.getObjetos().get(i).isDisponibleUsuario()){
-//                mejorMochila.getObjetos().get(i).setDisponibleUsuario(false);
-//                mejorMochila.getObjetos().get(i).setDisponibleFuerzaBruta(true);
-//             }
+//         //fuerza bruta probando con un solo elemento a la vez
+//         for (int j = 0; j < cantObjetos; j++) {
+//
+//             mochilaNueva.getObjetos().get(j).setDisponibleFuerzaBruta(true);
+//             validarAsignarMejorMchilaFBruta(mochilaNueva, mejorMochila);
+//             mochilaNueva.getObjetos().get(j).setDisponibleFuerzaBruta(false);
+//
 //         }
-
-
-
-
+//
+//         mochilaNueva.noDisponibleTodosLosObjetosFBruta();
+//         //fuerza bruta probando con las combinaciones de dos elementos
 //         for (int i = 0; i < cantObjetos; i++) {
+//             mochilaNueva.getObjetos().get(i).setDisponibleFuerzaBruta(true);
 //
-//             for (int k = 0; k <= i; k++) {
-//                 mochilaNueva.getObjetos().get(k).setDisponibleUsuario(true);
+//             for (int j = i + 1; j < cantObjetos; j++) {
 //
-//             }
-//             validarAsignarMejorMchila(mochilaNueva, mejorMochila);
+//                 mochilaNueva.getObjetos().get(j).setDisponibleFuerzaBruta(true);
 //
-//             for (int j = i+1; j < cantObjetos; j++) {
+//                 validarAsignarMejorMchilaFBruta(mochilaNueva, mejorMochila);
 //
-//                 mochilaNueva.getObjetos().get(j).setDisponibleUsuario(true);
-//
-//
-//
-//                 validarAsignarMejorMchila(mochilaNueva, mejorMochila);
-//
-//                 mochilaNueva.getObjetos().get(j).setDisponibleUsuario(false);
+//                 mochilaNueva.getObjetos().get(j).setDisponibleFuerzaBruta(false);
 //
 //             }
 //
 //             mochilaNueva.noDisponibleTodosLosObjetosFBruta();
 //
 //         }
+//
+//
+//         mochilaNueva.noDisponibleTodosLosObjetosFBruta();
+//         //fuerza bruta probando con las combinaciones de tres elementos
+//         for (int k = 0; k < cantObjetos; k++) {
+//             mochilaNueva.getObjetos().get(k).setDisponibleFuerzaBruta(true);
+//             for (int i = k+1; i < cantObjetos; i++) {
+//                 mochilaNueva.getObjetos().get(i).setDisponibleFuerzaBruta(true);
+//
+//                 for (int j = i+1; j < cantObjetos; j++) {
+//
+//                     mochilaNueva.getObjetos().get(j).setDisponibleFuerzaBruta(true);
+//
+//                     validarAsignarMejorMchilaFBruta(mochilaNueva, mejorMochila);
+//
+//                     mochilaNueva.getObjetos().get(j).setDisponibleFuerzaBruta(false);
+//
+//                 }
+//                 mochilaNueva.getObjetos().get(i).setDisponibleFuerzaBruta(false);
+//             }
+//             mochilaNueva.noDisponibleTodosLosObjetosFBruta();
+//         }
+//
+//
+//         mochilaNueva.noDisponibleTodosLosObjetosFBruta();
+//         //fuerza bruta probando con las combinaciones de cuatro elementos
+//
+//         for (int m = 0; m < cantObjetos; m++) {
+//             mochilaNueva.getObjetos().get(m).setDisponibleFuerzaBruta(true);
+//
+//             for (int k = m + 1; k < cantObjetos; k++) {
+//                 mochilaNueva.getObjetos().get(k).setDisponibleFuerzaBruta(true);
+//                 for (int i = k + 1; i < cantObjetos; i++) {
+//                     mochilaNueva.getObjetos().get(i).setDisponibleFuerzaBruta(true);
+//
+//                     for (int j = i + 1; j < cantObjetos; j++) {
+//
+//                         mochilaNueva.getObjetos().get(j).setDisponibleFuerzaBruta(true);
+//
+//                         validarAsignarMejorMchilaFBruta(mochilaNueva, mejorMochila);
+//
+//                         mochilaNueva.getObjetos().get(j).setDisponibleFuerzaBruta(false);
+//
+//                     }
+//                     mochilaNueva.getObjetos().get(i).setDisponibleFuerzaBruta(false);
+//                 }
+//                 mochilaNueva.getObjetos().get(k).setDisponibleFuerzaBruta(false);
+//             }
+//             mochilaNueva.noDisponibleTodosLosObjetosFBruta();
+//         }
 
+
+
+         //Test
+
+        int ultimoElem;
+        mochilaNueva.noDisponibleTodosLosObjetosFBruta();
+
+        for (int cantElem = 1; cantElem < cantObjetos; cantElem++) {
+
+            for (int primerElem = 0; primerElem < cantObjetos; primerElem++) {
+
+                //mochilaNueva.getObjetos().get(primerElem).setDisponibleFuerzaBruta(true);
+
+                //for (int indice = primerElem; indice < (cantElem+primerElem); indice++) {
+                //mochilaNueva.getObjetos().get(i).setDisponibleFuerzaBruta(true);
+
+
+                if ((cantElem + primerElem) <= cantObjetos) {
+                    mochilaNueva.getObjetos().get(primerElem).setDisponibleFuerzaBruta(true);
+
+
+                    if(cantElem==2){
+                        ultimoElem = (primerElem + cantElem-1);
+                        mochilaNueva.getObjetos().get(ultimoElem).setDisponibleFuerzaBruta(true);
+                        validarAsignarMejorMchilaFBruta(mochilaNueva, mejorMochila);
+                        mochilaNueva.getObjetos().get(ultimoElem).setDisponibleFuerzaBruta(false);
+
+                    }
+
+                    if (cantElem > 2) {
+//                        for (int indice = (primerElem + 1); indice < cantObjetos; indice++) {
+                            ultimoElem = (primerElem + cantElem-1);
+
+                            if (ultimoElem < cantObjetos) {
+
+
+                                for (int i = (primerElem + 1); i < (cantElem - 1); i++) {
+                                    mochilaNueva.getObjetos().get(i).setDisponibleFuerzaBruta(true);
+
+                                }
+                                for (int variador = ultimoElem; variador < cantObjetos; variador++) {
+                                    mochilaNueva.getObjetos().get(variador).setDisponibleFuerzaBruta(true);
+                                    validarAsignarMejorMchilaFBruta(mochilaNueva, mejorMochila);
+                                    mochilaNueva.getObjetos().get(variador).setDisponibleFuerzaBruta(false);
+
+                                }
+                                
+
+                                for (int i = (primerElem + 1); i < (cantElem - 1); i++) {
+                                    mochilaNueva.getObjetos().get(i).setDisponibleFuerzaBruta(false);
+
+                                }
+                            }
+                        //}
+
+
+
+                    }
+
+                }
+
+                validarAsignarMejorMchilaFBruta(mochilaNueva, mejorMochila);
+                mochilaNueva.noDisponibleTodosLosObjetosFBruta();
+
+            }
+
+        }
 
         return mejorMochila;
     }
+
 
     private void validarAsignarMejorMchilaFBruta(Mochila mochilaNueva, Mochila mejorMochila) {
         if (mochilaNueva.isVolumenOcupadFBrutaoCorrecto() &&
