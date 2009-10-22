@@ -11,6 +11,7 @@ public class Hormiga {
     private double probAcumulada;
     private double nroAleatorio;
     private List<Mochila> caminoHormiga;
+    private Mochila mejorMochilaHormiga;
 
     public double getFeromonaInicial() {
         return feromonaInicial;
@@ -76,6 +77,20 @@ public class Hormiga {
      */
     public void setCaminoHormiga(List<Mochila> caminoHormiga) {
         this.caminoHormiga = caminoHormiga;
+    }
+
+    /**
+     * @return the mejorMochilaHormiga
+     */
+    public Mochila getMejorMochilaHormiga() {
+        return mejorMochilaHormiga;
+    }
+
+    /**
+     * @param mejorMochilaHormiga the mejorMochilaHormiga to set
+     */
+    public void setMejorMochilaHormiga(Mochila mejorMochilaHormiga) {
+        this.mejorMochilaHormiga = mejorMochilaHormiga;
     }
 
 }
