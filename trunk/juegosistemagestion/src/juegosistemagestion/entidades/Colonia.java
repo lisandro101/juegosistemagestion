@@ -18,6 +18,7 @@ public class Colonia {
     private double nivelBeneficio;
     private // beneficio acumulado
     List<Hormiga> listaHormigas;
+    private Mochila mejorMochilaPorColonia;
 
     /**
      * @return the cantidadHormigas
@@ -87,7 +88,22 @@ public class Colonia {
      */
     public void setListaHormigas( // beneficio acumulado
     List<Hormiga> listaHormigas) {
-        this.listaHormigas = listaHormigas;
+        this.setListaHormigas(listaHormigas);
+    }
+
+  
+    /**
+     * @return the mejorMochilaPorColonia
+     */
+    public Mochila getMejorMochilaPorColonia() {
+        return mejorMochilaPorColonia;
+    }
+
+    /**
+     * @param mejorMochilaPorColonia the mejorMochilaPorColonia to set
+     */
+    public void setMejorMochilaPorColonia(Mochila mejorMochilaPorColonia) {
+        this.mejorMochilaPorColonia = mejorMochilaPorColonia;
     }
 
 }
