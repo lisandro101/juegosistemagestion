@@ -78,12 +78,15 @@ public class GestorMochila {
         Mochila mochila2 = mochila.clonarMochila();
 
         Mochila mejorMochilaPorHormiga = new Mochila();
+        List<Objeto> objetosMejorMochilaPorHormiga = new ArrayList<Objeto>();
+        mejorMochilaPorHormiga.setObjetos(objetosMejorMochilaPorHormiga);
 
         int cantidadColonias = colonias.size();
         int cantidadHormigas = colonias.get(0).getCantidadHormigas();
         int cantidadObjetos = mochila.getCantidadDeObjetos();
         double capacidad = mochila.getCapacidad();
-        
+        double probabilidadAcumulada = 0;
+        double probabilidad =0;
 
 
         for (Colonia colonia : colonias) {
@@ -98,22 +101,44 @@ public class GestorMochila {
             for (int k = 0; k < cantidadHormigas; k++) {
                 // System.out.println("=====================================Hormiga " + k + "=============================");
 
-                 double nroAleatorio = Math.random();
+                double nroAleatorio = Math.random();
                 colonias.get(j).getListaHormigas().get(k).setNroAleatorio(nroAleatorio);
                 mejorMochilaPorHormiga.vaciarMochila();
                 mochila2.noDisponibleTodosLosObjetosCHormiga();
-                
+
                 //for (int z = 0; z < cantidadObjetos; z++) {
-               
+
+                while (!(mochila.isVolumenOcupadoCHormigaCorrecto())) {
 
                     for (int i = 0; i < cantidadObjetos; i++) {
                         // System.out.println("=====================================Objeto " + i + "=============================");
+                        probabilidad = calcularProbabilidad(mochila2.getObjetos(), i);
+                        probabilidadAcumulada = +probabilidad;
+                        mochila2.getObjetos().get(i).setProbabilidad(probabilidad);
+                        mochila2.getObjetos().get(i).setProbabilidadAcumulada(probabilidadAcumulada);
+                        mochila2.getObjetos().get(i).setNumAleatorioMin(probabilidadAcumulada - probabilidad);
+                        mochila2.getObjetos().get(i).setNumAleatorioMax(probabilidadAcumulada);
 
+
+                        //si el nro aleatorio coincide con el rango de probabilidad del objeto
+                        if ((mochila2.getObjetos().get(i).getNumAleatorioMin() <= nroAleatorio && mochila2.getObjetos().get(i).getNumAleatorioMax() > nroAleatorio)) {
+                            mochila2.getObjetos().remove(i);
+                            mochila.getObjetos().get(i).setDisponibleHormiga(true);
+                        }
 
 
                     }//i
 
-               // }//z
+                    probabilidad=0;
+                    probabilidadAcumulada = 0;
+
+                }//while
+
+                //valida la mejor mochila de la hormiga
+                if(mejorMochilaPorHormiga.getBeneficioObtenidoCHormiga() < mochila2.getBeneficioObtenidoCHormiga()){
+                mejorMochilaPorHormiga = mochila2;
+                }
+                // }//z
 
             }//k
 
