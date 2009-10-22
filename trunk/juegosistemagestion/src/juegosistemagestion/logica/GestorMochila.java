@@ -30,6 +30,7 @@ public class GestorMochila {
     }
 
     private double calcularProbabilidad(List<Objeto> objetos, int i) {
+
         int cantObjetos = objetos.size();
         double probabilidad = 1.0 / (double) cantObjetos;
         //objetos.get(i).setProbabilidad(probabilidad);
@@ -80,7 +81,7 @@ public class GestorMochila {
         Mochila mejorMochilaPorHormiga = new Mochila();
         //List<Objeto> objetosMejorMochilaPorHormiga = new ArrayList<Objeto>();
         //mejorMochilaPorHormiga.setObjetos(objetosMejorMochilaPorHormiga);
-        mejorMochila.clonarMochila();
+        mejorMochila = mochila.clonarMochila();
 
         int cantidadColonias = colonias.size();
         int cantidadHormigas = colonias.get(0).getCantidadHormigas();
@@ -104,7 +105,7 @@ public class GestorMochila {
 
                 double nroAleatorio = Math.random();
                 colonias.get(j).getListaHormigas().get(k).setNroAleatorio(nroAleatorio);
-                mejorMochilaPorHormiga.vaciarMochila();
+                //mejorMochilaPorHormiga.vaciarMochila();
                 mochila.noDisponibleTodosLosObjetosCHormiga();
                 mochila2.noDisponibleTodosLosObjetosCHormiga();
 
@@ -125,8 +126,10 @@ public class GestorMochila {
                         if ((mochila2.getObjetos().get(i).getNumAleatorioMin() <= nroAleatorio && mochila2.getObjetos().get(i).getNumAleatorioMax() > nroAleatorio)) {
                             mochila2.getObjetos().remove(i);
                             mochila.getObjetos().get(i).setDisponibleHormiga(true);
+                            //Actualizar el rastro de feromona para los objetos seleccionados
                         }
 
+                        
                     }//i
 
                     probabilidad = 0;
@@ -136,8 +139,11 @@ public class GestorMochila {
 
                 //valida la mejor mochila de la hormiga
                 validarAsignarMejorMchilaCHormiga(mochila, mejorMochilaPorHormiga);
-
+                colonias.get(j).getListaHormigas().get(k).setMejorMochilaHormiga(mejorMochilaPorHormiga);
+                
             }//k
+
+
 
         }   //j
         return mejorMochila;
