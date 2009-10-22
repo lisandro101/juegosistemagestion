@@ -77,7 +77,7 @@ public class GestorMochila {
 
         Mochila mejorMochila = mochila.clonarMochila();
         Mochila mochila2 = mochila.clonarMochila();
-
+        Mochila mejorMochilaPorColonia = mochila.clonarMochila();
         Mochila mejorMochilaPorHormiga = new Mochila();
         //List<Objeto> objetosMejorMochilaPorHormiga = new ArrayList<Objeto>();
         //mejorMochilaPorHormiga.setObjetos(objetosMejorMochilaPorHormiga);
@@ -145,7 +145,14 @@ public class GestorMochila {
 
 
 
+            validarAsignarMejorMchilaCHormiga(mejorMochilaPorHormiga, mejorMochilaPorColonia);
+            colonias.get(j).setMejorMochilaPorColonia(mejorMochilaPorColonia);
+
+            
+
         }   //j
+
+
         return mejorMochila;
     }
 
