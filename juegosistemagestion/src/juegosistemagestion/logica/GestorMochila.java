@@ -144,15 +144,19 @@ public class GestorMochila {
             }//k
 
 
-
-            validarAsignarMejorMchilaCHormiga(mejorMochilaPorHormiga, mejorMochilaPorColonia);
+            for(Hormiga hormiga : colonias.get(j).getListaHormigas()){
+            validarAsignarMejorMchilaCHormiga(hormiga.getMejorMochilaHormiga(), mejorMochilaPorColonia);
             colonias.get(j).setMejorMochilaPorColonia(mejorMochilaPorColonia);
-
+            }
             
 
         }   //j
 
-
+        for(Colonia colonia : colonias){
+            Mochila mejor = colonia.getMejorMochilaPorColonia();
+            validarAsignarMejorMchilaCHormiga(mejor, mejorMochila);
+        
+        }
         return mejorMochila;
     }
 
