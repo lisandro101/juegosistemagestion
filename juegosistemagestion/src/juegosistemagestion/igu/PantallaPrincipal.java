@@ -601,8 +601,8 @@ public class PantallaPrincipal extends javax.swing.JDialog {
             tModel.limpiarTableModel();
             tModel.agregarFilas(mochi.getObjetos());
 
-            tfVolumenOcupadoCHormigas.setText(String.valueOf(mochi.getVolumenOcupadoFBruta()));
-            tfBeneficioObCHormigas.setText(String.valueOf(mochi.getBeneficioObtenidoFBruta()));
+            tfVolumenOcupadoCHormigas.setText(String.valueOf(mochi.getVolumenOcupadoCHormiga()));
+            tfBeneficioObCHormigas.setText(String.valueOf(mochi.getBeneficioObtenidoCHormiga()));
     }
 }//GEN-LAST:event_btCalcHormigaActionPerformed
     
