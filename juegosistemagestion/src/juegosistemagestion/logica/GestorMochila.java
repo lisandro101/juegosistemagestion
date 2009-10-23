@@ -100,16 +100,17 @@ public class GestorMochila {
 
 
         for (int j = 0; j < cantidadColonias; j++) {
-            //System.out.println("=====================================Colonia " + j + "=============================");
+            System.out.println("================================Colonia " + colonias.get(j).getNombre() +"=============================");
 
 
             for (int k = 0; k < cantidadHormigas; k++) {
-                // System.out.println("=====================================Hormiga " + k + "=============================");
+                System.out.println("=====================================Hormiga " + hormigas.get(k).getNombre() + "=============================");
 
                 double nroAleatorio = Math.random();
                 colonias.get(j).getListaHormigas().get(k).setNroAleatorio(nroAleatorio);
                 //mejorMochilaPorHormiga.vaciarMochila();
                 mochila.noDisponibleTodosLosObjetosCHormiga();
+                mochila2 = mochila.clonarMochila();
                 mochila2.noDisponibleTodosLosObjetosCHormiga();
 
                 double capMochi =0;
@@ -139,8 +140,7 @@ public class GestorMochila {
 
                         //Actualizar el rastro de feromona para los objetos seleccionados
                         }
-                      //  mochila.setBeneficioMayor(beneficio);
-                       // mochila.get
+                     
 
                     }//i
                     volumen = 0;
@@ -149,20 +149,20 @@ public class GestorMochila {
                     probabilidadAcumulada = 0;
 
                 }//while
-                
+                capMochi=0;
                 System.out.println("mochila: "+ mochila.getObjetos().size());
                 System.out.println("mochila2: "+ mochila2.getObjetos().size());
                 
                 //valida la mejor mochila de la hormiga
                 
-                //validarAsignarMejorMchilaCHormiga(mochila, mejorMochilaPorHormiga);
+                validarAsignarMejorMchilaCHormiga(mochila, mejorMochilaPorHormiga);
                 colonias.get(j).getListaHormigas().get(k).setMejorMochilaHormiga(mejorMochilaPorHormiga);
 
             }//k
 
 
             for (Hormiga hormiga : colonias.get(j).getListaHormigas()) {
-                //validarAsignarMejorMchilaCHormiga(hormiga.getMejorMochilaHormiga(), mejorMochilaPorColonia);
+                validarAsignarMejorMchilaCHormiga(hormiga.getMejorMochilaHormiga(), mejorMochilaPorColonia);
                 colonias.get(j).setMejorMochilaPorColonia(mejorMochilaPorColonia);
             }
 
