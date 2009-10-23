@@ -86,9 +86,8 @@ public class Colonia {
     /**
      * @param listaHormigas the listaHormigas to set
      */
-    public void setListaHormigas( // beneficio acumulado
-    List<Hormiga> listaHormigas) {
-        this.setListaHormigas(listaHormigas);
+    public void setListaHormigas(List<Hormiga> listaHormigas) {
+        this.listaHormigas = listaHormigas;
     }
 
   
