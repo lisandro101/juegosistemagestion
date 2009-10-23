@@ -26,6 +26,7 @@ public class GestorMochila {
         return instance;
     }
 
+
     private GestorMochila() {
     }
 
@@ -33,7 +34,7 @@ public class GestorMochila {
 
         int cantObjetos = objetos.size();
         double probabilidad = 1.0 / (double) cantObjetos;
-        //objetos.get(i).setProbabilidad(probabilidad);
+        objetos.get(i).setProbabilidad(probabilidad);
         //System.out.println("La probabilidad del Objeto "+ i + " es "+objetos.get(i).getProbabilidad());
         return probabilidad;
     }
@@ -72,24 +73,26 @@ public class GestorMochila {
         // System.out.println("=============================================================================================");
         // System.out.println("======================================Metodo calcular Por Hormiga============================");
         // System.out.println("=============================================================================================");
-        List<Colonia> colonias = generarColonias(5);
-        List<Hormiga> hormigas = generarHormigas(5);
+        List<Colonia> colonias = generarColonias(10);
+        List<Hormiga> hormigas = generarHormigas(10);
 
         Mochila mejorMochila = mochila.clonarMochila();
         Mochila mochila2 = mochila.clonarMochila();
         Mochila mejorMochilaPorColonia = mochila.clonarMochila();
-        Mochila mejorMochilaPorHormiga = new Mochila();
+        Mochila mejorMochilaPorHormiga = mochila.clonarMochila();
         //List<Objeto> objetosMejorMochilaPorHormiga = new ArrayList<Objeto>();
         //mejorMochilaPorHormiga.setObjetos(objetosMejorMochilaPorHormiga);
         mejorMochila = mochila.clonarMochila();
 
         int cantidadColonias = colonias.size();
         int cantidadHormigas = colonias.get(0).getCantidadHormigas();
-        int cantidadObjetos = mochila.getCantidadDeObjetos();
+        int cantidadObjetos = mochila.getObjetos().size();
         double capacidad = mochila.getCapacidad();
         double probabilidadAcumulada = 0;
         double probabilidad = 0;
-
+        double beneficio = 0;
+        double volumen = 0;
+        System.out.println("capacidad "+ mochila.getCapacidad());
 
         for (Colonia colonia : colonias) {
             colonia.setListaHormigas(hormigas);
@@ -109,43 +112,57 @@ public class GestorMochila {
                 mochila.noDisponibleTodosLosObjetosCHormiga();
                 mochila2.noDisponibleTodosLosObjetosCHormiga();
 
+                double capMochi =0;
 
-                while (!(mochila.isVolumenOcupadoCHormigaCorrecto())) {
+                for(int w = 0;capMochi <= mochila.getCapacidad() && w < mochila.getObjetos().size();w++) {
 
-                    for (int i = 0; i < cantidadObjetos; i++) {
-                        // System.out.println("=====================================Objeto " + i + "=============================");
+                    for (int i = 0; i < mochila2.getObjetos().size(); i++) {
+                        System.out.println("=====================================Objeto " + mochila2.getObjetos().get(i).getNombre() + "=============================");
                         probabilidad = calcularProbabilidad(mochila2.getObjetos(), i);
-                        probabilidadAcumulada = +probabilidad;
+                        probabilidadAcumulada = probabilidadAcumulada + probabilidad;
                         mochila2.getObjetos().get(i).setProbabilidad(probabilidad);
                         mochila2.getObjetos().get(i).setProbabilidadAcumulada(probabilidadAcumulada);
                         mochila2.getObjetos().get(i).setNumAleatorioMin(probabilidadAcumulada - probabilidad);
                         mochila2.getObjetos().get(i).setNumAleatorioMax(probabilidadAcumulada);
-
+                    
+                         
 
                         //si el nro aleatorio coincide con el rango de probabilidad del objeto
                         if ((mochila2.getObjetos().get(i).getNumAleatorioMin() <= nroAleatorio && mochila2.getObjetos().get(i).getNumAleatorioMax() > nroAleatorio)) {
+                            System.out.println("Elegido!!!");
                             mochila2.getObjetos().remove(i);
                             mochila.getObjetos().get(i).setDisponibleHormiga(true);
+                            capMochi = capMochi + mochila.getObjetos().get(i).getVolumen();
+                            beneficio =+ mochila.getObjetos().get(i).getBeneficio();
+                            volumen =+ mochila.getObjetos().get(i).getVolumen();
+
+
                         //Actualizar el rastro de feromona para los objetos seleccionados
                         }
-
+                      //  mochila.setBeneficioMayor(beneficio);
+                       // mochila.get
 
                     }//i
-
+                    volumen = 0;
+                    beneficio = 0;
                     probabilidad = 0;
                     probabilidadAcumulada = 0;
 
                 }//while
-
+                
+                System.out.println("mochila: "+ mochila.getObjetos().size());
+                System.out.println("mochila2: "+ mochila2.getObjetos().size());
+                
                 //valida la mejor mochila de la hormiga
-                validarAsignarMejorMchilaCHormiga(mochila, mejorMochilaPorHormiga);
+                
+                //validarAsignarMejorMchilaCHormiga(mochila, mejorMochilaPorHormiga);
                 colonias.get(j).getListaHormigas().get(k).setMejorMochilaHormiga(mejorMochilaPorHormiga);
 
             }//k
 
 
             for (Hormiga hormiga : colonias.get(j).getListaHormigas()) {
-                validarAsignarMejorMchilaCHormiga(hormiga.getMejorMochilaHormiga(), mejorMochilaPorColonia);
+                //validarAsignarMejorMchilaCHormiga(hormiga.getMejorMochilaHormiga(), mejorMochilaPorColonia);
                 colonias.get(j).setMejorMochilaPorColonia(mejorMochilaPorColonia);
             }
 

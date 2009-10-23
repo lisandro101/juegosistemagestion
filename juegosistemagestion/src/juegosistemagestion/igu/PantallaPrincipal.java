@@ -596,7 +596,7 @@ public class PantallaPrincipal extends javax.swing.JDialog {
 
         private void btCalcHormigaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCalcHormigaActionPerformed
     if(mochilaGlobal != null){
-            Mochila mochi=GestorMochila.getInstancia(). calcularPorFuerzaBruta(mochilaGlobal);
+            Mochila mochi=GestorMochila.getInstancia().calcularPorHormiga(mochilaGlobal);
 
             tModel.limpiarTableModel();
             tModel.agregarFilas(mochi.getObjetos());
