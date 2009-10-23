@@ -83,6 +83,7 @@ public class PantallaPrincipal extends javax.swing.JDialog {
         tfBeneficioObUsuario = new javax.swing.JTextField();
         jxPArchivos = new org.jdesktop.swingx.JXPanel();
         btCalcularFBruta = new javax.swing.JButton();
+        btCalcHormiga = new javax.swing.JButton();
         btError = new javax.swing.JButton();
         btCargar = new javax.swing.JButton();
         btGuardar = new javax.swing.JButton();
@@ -395,6 +396,15 @@ public class PantallaPrincipal extends javax.swing.JDialog {
         });
         jxPArchivos.add(btCalcularFBruta);
 
+        btCalcHormiga.setText("Calcular C.Hormigas");
+        btCalcHormiga.setActionCommand("btCalcHorm");
+        btCalcHormiga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCalcHormigaActionPerformed(evt);
+            }
+        });
+        jxPArchivos.add(btCalcHormiga);
+
         btError.setText("Error");
         btError.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -583,8 +593,21 @@ public class PantallaPrincipal extends javax.swing.JDialog {
             mochilaGlobal.setObjetos(tModel.getFilas());
             calcularEntradasUsuario(mochilaGlobal);
         }//GEN-LAST:event_jXTResultadoKeyReleased
+
+        private void btCalcHormigaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCalcHormigaActionPerformed
+    if(mochilaGlobal != null){
+            Mochila mochi=GestorMochila.getInstancia(). calcularPorFuerzaBruta(mochilaGlobal);
+
+            tModel.limpiarTableModel();
+            tModel.agregarFilas(mochi.getObjetos());
+
+            tfVolumenOcupadoCHormigas.setText(String.valueOf(mochi.getVolumenOcupadoFBruta()));
+            tfBeneficioObCHormigas.setText(String.valueOf(mochi.getBeneficioObtenidoFBruta()));
+    }
+}//GEN-LAST:event_btCalcHormigaActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btCalcHormiga;
     private javax.swing.JButton btCalcularFBruta;
     private javax.swing.JButton btCargar;
     private javax.swing.JButton btError;

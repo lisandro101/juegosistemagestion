@@ -546,6 +546,15 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btCalcularFBrutaActionPerformed"/>
           </Events>
         </Component>
+        <Component class="javax.swing.JButton" name="btCalcHormiga">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Calcular C.Hormigas"/>
+            <Property name="actionCommand" type="java.lang.String" value="btCalcHorm"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btCalcHormigaActionPerformed"/>
+          </Events>
+        </Component>
         <Component class="javax.swing.JButton" name="btError">
           <Properties>
             <Property name="text" type="java.lang.String" value="Error"/>
